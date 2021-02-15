@@ -1,0 +1,9 @@
+logging:
+  config: classpath:logback/logback-spring.xml
+
+spring:
+  datasource:
+    url: jdbc:log4jdbc:mysql://3.138.187.233:3306/
+    username: openit
+    password: Opt@79787
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
