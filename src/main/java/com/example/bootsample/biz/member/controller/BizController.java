@@ -1,8 +1,9 @@
-package com.example.bootsample.biz.controller;
+package com.example.bootsample.biz.member.controller;
 
-import com.example.bootsample.biz.service.Impl.IBizService;
+import com.example.bootsample.biz.member.service.Impl.IBizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -11,7 +12,7 @@ public class BizController {
     @Autowired
     IBizService bizService;
 
-    @GetMapping("")
+    @RequestMapping(method = RequestMethod.GET)
     public String getTest() {
 
         return bizService.getTest();

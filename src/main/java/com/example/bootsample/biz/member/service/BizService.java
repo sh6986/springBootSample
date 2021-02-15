@@ -1,7 +1,7 @@
-package com.example.bootsample.biz.service;
+package com.example.bootsample.biz.member.service;
 
-import com.example.bootsample.biz.mapper.Impl.IBizMapper;
-import com.example.bootsample.biz.service.Impl.IBizService;
+import com.example.bootsample.biz.member.mapper.Impl.IBizMapper;
+import com.example.bootsample.biz.member.service.Impl.IBizService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

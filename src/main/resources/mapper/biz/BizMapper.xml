@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.bootsample.biz.mapper.Impl.IBizMapper">
+<mapper namespace="com.example.bootsample.biz.member.mapper.Impl.IBizMapper">
     <select id="selectTest" parameterType="int" resultType="int">
         SELECT #{num}
     </select>
