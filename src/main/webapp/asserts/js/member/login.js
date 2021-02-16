@@ -18,10 +18,12 @@ function login() {
     const password = $('#password').val()
     const url = '/login';
 
-    const data = {
+    let data = {
         id: id,
         password: password
     };
 
-    common.ajax(contextPath + url, data, 'POST', console.log('success'), console.log('error'));
+    data = JSON.stringify(data);
+
+    common.ajax(contextPath + url, data, 'POST', ()=>{console.log('success')}, ()=>{console.log('error')});
 }

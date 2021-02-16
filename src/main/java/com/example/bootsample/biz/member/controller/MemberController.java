@@ -36,13 +36,28 @@ public class MemberController {
         logger.info("========== MemberController.login Start ==========");
 
         ResultDTO resultObject = new ResultDTO("a","b","c");
-//
-//        HttpSession session = request.getSession();
-//        session.setAttribute("memberInfo", memberDTO);
-//
-//        logger.info("memberDTO : " + memberDTO);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("memberInfo", memberDTO);
+
+        logger.info("memberDTO : " + memberDTO);
 
         logger.info("========== MemberController.login End ==========");
+
+        return resultObject;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ResultDTO logout(HttpServletRequest request) {
+
+        logger.info("========== MemberController.logout Start ==========");
+
+        ResultDTO resultObject = new ResultDTO("a","b","c");
+
+        request.getSession().removeAttribute("memberInfo");
+        request.getSession().invalidate();
+
+        logger.info("========== MemberController.logout End ==========");
 
         return resultObject;
     }
