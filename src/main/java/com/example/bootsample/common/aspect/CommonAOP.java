@@ -13,7 +13,7 @@ public class CommonAOP {
 
     private static final Logger logger = LoggerFactory.getLogger(CommonAOP.class);
 
-    @Around("execution(* com.example.bootsample.biz.member.controller.BizController.*(..))")
+    @Around("execution(* com.example.bootsample.biz.member.controller.MemberController.*(..))")
     public Object logging(ProceedingJoinPoint joinPoint) throws Throwable{
 
         logger.info("========== CommonAOP.logging Start ==========");

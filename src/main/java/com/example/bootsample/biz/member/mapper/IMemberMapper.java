@@ -1,5 +1,5 @@
 package com.example.bootsample.biz.member.mapper;
 
-public interface IBizMapper {
+public interface IMemberMapper {
     int selectTest(int num);
 }

@@ -1,5 +1,6 @@
 package com.example.bootsample.common.config;
 
+import com.example.bootsample.common.filter.CommonFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
