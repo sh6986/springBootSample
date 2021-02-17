@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.bootsample.biz.file.mapper.IFileMapper">
+
+    <insert id="insertFile" parameterType="com.example.bootsample.biz.file.model.FileDTO">
+        INSERT
+        INTO    OSH.FILE
+                (
+                  ORIGIN_NAME
+                 ,STORED_NAME
+                 ,FILE_SIZE
+                 ,FILE_PATH
+                 ,MEM_ID
+                 ,FILE_TYPE
+                 ,FILE_DESC
+                )
+        VALUES
+               (
+                 #{ORIGIN_NAME}
+                ,#{STORED_NAME}
+                ,#{FILE_SIZE}
+                ,#{FILE_PATH}
+                ,#{MEM_ID}
+                ,#{FILE_TYPE}
+                ,#{FILE_DESC}
+               )
+    </insert>
+
+    <update id="updateFile" parameterType="com.example.bootsample.biz.file.model.FileDTO">
+        UPDATE  FILE
+        SET     ORIGIN_NAME = #{ORIGIN_NAME}
+               ,UPDATE_DATE = NOW()
+        WHERE   FILE_NO = #{FILE_NO}
+    </update>
+
+</mapper>

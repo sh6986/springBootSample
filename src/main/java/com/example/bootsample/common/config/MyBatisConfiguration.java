@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @MapperScan(basePackages = "com.example.bootsample")
@@ -36,7 +37,11 @@ public class MyBatisConfiguration {
     @Bean
     // 핵심적인 역할은 하는 클래스로서 SQL 실행이나 트랜잭션 관리 실행한다.
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-        return new SqlSessionTemplate(sqlSessionFactory);
+
+        SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
+        sqlSessionTemplate.getConfiguration().setMapUnderscoreToCamelCase(true);
+
+        return sqlSessionTemplate;
     }
 
 }

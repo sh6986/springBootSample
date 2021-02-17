@@ -1,4 +1,4 @@
-package com.example.bootsample.common.utill;
+package com.example.bootsample.common.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

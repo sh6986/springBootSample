@@ -4,8 +4,6 @@ import com.example.bootsample.biz.member.model.MemberDTO;
 
 public interface IMemberService {
 
-    String getTest();
-
     /**
      * 회원가입
      * @param memberDTO

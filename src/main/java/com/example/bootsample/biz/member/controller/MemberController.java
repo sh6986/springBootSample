@@ -4,7 +4,7 @@ import com.example.bootsample.biz.member.model.MemberDTO;
 import com.example.bootsample.biz.member.service.IMemberService;
 import com.example.bootsample.common.constant.MessageConstants;
 import com.example.bootsample.common.model.ResultDTO;
-import com.example.bootsample.common.utill.BootSampleUtills;
+import com.example.bootsample.common.util.BootSampleUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
+@RequestMapping(value = "/member")
 public class MemberController {
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -27,14 +28,6 @@ public class MemberController {
 
     @Autowired
     IMemberService memberService;
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String getTest() {
-
-        logger.info("========== MemberController.getTest ==========");
-
-        return memberService.getTest();
-    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultDTO login(@RequestBody MemberDTO memberDTO, HttpServletRequest request) {
@@ -67,9 +60,6 @@ public class MemberController {
 
         return resultObject;
     }
-
-
-
 
     @RequestMapping(value = "/reg", method = RequestMethod.POST)
     public ResultDTO memberReg(@RequestBody MemberDTO memberDTO) {

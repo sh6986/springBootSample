@@ -13,12 +13,6 @@ public class MemberService implements IMemberService {
     @Resource
     IMemberMapper memberMapper;
 
-    @Override
-    public String getTest() {
-        int param = 411;
-        return ""+memberMapper.selectTest(param);
-    }
-
     /**
      * 회원가입
      * @param memberDTO
