@@ -11,6 +11,13 @@
     <title>Title</title>
 </head>
 <body>
-index
+<div class="main_personalized">
+    <div class="jumbotron">
+        <h1 class="display-3">SAMPLE PAGE</h1>
+        <p class="lead">bootstrap : <a href="https://bootswatch.com/sandstone/">https://bootswatch.com/sandstone/</a></p>
+    </div>
+
+
+</div>
 </body>
 </html>

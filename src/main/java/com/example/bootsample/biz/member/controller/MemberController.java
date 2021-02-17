@@ -28,14 +28,6 @@ public class MemberController {
     @Autowired
     IMemberService memberService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getTest() {
-
-        logger.info("========== MemberController.getTest ==========");
-
-        return memberService.getTest();
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultDTO login(@RequestBody MemberDTO memberDTO, HttpServletRequest request) {
 

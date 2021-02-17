@@ -1,0 +1,10 @@
+#smartPop_overlay {display:block; overflow:hidden; position:fixed; background-color:rgba(252, 252, 252, .75); top:0; right:0; bottom:0; left:0; z-index:100000; cursor:wait;}
+#smartPop {display:none; position:fixed; top:0; right:0; bottom:0; left:0; z-index:100004; overflow-x:auto; overflow-y:scroll;}
+#smartPop_container {margin:9px auto 100px auto; max-width:1300px; padding:0px; width:720px; height:500px; z-index:2; overflow:hidden; }
+
+#smartPop_content {display:none; overflow:hidden; cursor:default; padding:0;}
+#smartPop_frame {display:none; width:100%; height:100%;}
+#smartPop_log {display:none; position:fixed; top:10px; left:10px; overflow:auto; width:200px; height:400px; background:#fff; border:solid 1px #444; padding:10px; z-index:3;}
+
+#smartPop_close_wrap { background:#eee; }
+#smartPop_close { height:22px; background:url('/systemmanager3477/images/icon/close.png') 99% 2px no-repeat; cursor:pointer; }
