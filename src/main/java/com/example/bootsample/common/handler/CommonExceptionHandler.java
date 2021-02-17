@@ -11,8 +11,8 @@ public class CommonExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(CommonExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
-    public void exCheck(Exception ex) {
+    public void exCheck() {
+        // TODO : res return
         logger.info("========== Exception ==========");
-        logger.error("Exception error: {}", ex);
     }
 }

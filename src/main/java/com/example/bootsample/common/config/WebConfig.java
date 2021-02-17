@@ -1,6 +1,7 @@
 package com.example.bootsample.common.config;
 
 import com.example.bootsample.common.filter.CommonFilter;
+import com.example.bootsample.common.filter.SampleSiteMeshFilter;
 import com.example.bootsample.common.interceptor.CommonInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,12 @@ public class WebConfig implements WebMvcConfigurer {
         return filterRegistrationBean;
     }
 
+    @Bean
+    public FilterRegistrationBean siteMeshFilter() {
+        FilterRegistrationBean filter = new FilterRegistrationBean();
+        filter.setFilter(new SampleSiteMeshFilter());
+        return filter;
+    }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new CommonInterceptor())
