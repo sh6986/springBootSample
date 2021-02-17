@@ -2,8 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.bootsample.biz.member.mapper.IMemberMapper">
+
+
     <select id="selectTest" parameterType="int" resultType="int">
         SELECT #{num}
     </select>
+
+
+    <insert id="insertMember" parameterType="com.example.bootsample.biz.member.model.MemberDTO">
+        INSERT
+        INTO 	OSH.MEMBER
+                (
+                  MEM_ID
+                 ,MEM_PWD
+                )
+        VALUES
+                (
+                  #{memId}
+                 ,PASSWORD(#{memPwd})
+                )
+    </insert>
 
 </mapper>

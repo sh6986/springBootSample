@@ -1,6 +1,7 @@
 package com.example.bootsample.biz.member.service.Impl;
 
 import com.example.bootsample.biz.member.mapper.IMemberMapper;
+import com.example.bootsample.biz.member.model.MemberDTO;
 import com.example.bootsample.biz.member.service.IMemberService;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,16 @@ public class MemberService implements IMemberService {
     public String getTest() {
         int param = 411;
         return ""+memberMapper.selectTest(param);
+    }
+
+    /**
+     * 회원가입
+     * @param memberDTO
+     * @return
+     */
+    @Override
+    public int registerMember(MemberDTO memberDTO) {
+        // TODO : 암호화 검사
+        return memberMapper.insertMember(memberDTO);
     }
 }
