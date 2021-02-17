@@ -12,6 +12,7 @@ public class CommonExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public void exCheck() {
+        // TODO : res return
         logger.info("========== Exception ==========");
     }
 }
