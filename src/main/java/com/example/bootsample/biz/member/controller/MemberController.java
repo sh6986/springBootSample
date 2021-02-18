@@ -10,13 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/member")
@@ -61,8 +60,29 @@ public class MemberController {
         return resultObject;
     }
 
+    /**
+     * 회원 아이디 체크
+     * @param memId
+     * @return
+     */
+    @RequestMapping(value = "/check/id/{memId}", method = RequestMethod.GET)
+    public ResultDTO memberReg(@PathVariable String memId) {
+
+        String nonDuplYn = memberService.searchMemIdNonDuplYn(memId);
+        if (nonDuplYn == "N" ) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
+
+        return new ResultDTO();
+    }
+
+    /**
+     * 회원생성
+     * @param memberDTO
+     * @return
+     */
     @RequestMapping(value = "/reg", method = RequestMethod.POST)
-    public ResultDTO memberReg(@RequestBody MemberDTO memberDTO) {
+    public ResultDTO memberRegister(@RequestBody MemberDTO memberDTO) {
 
         logger.info("========== MemberController.reg Start ==========");
         // TODO : 파라미터 체크 (@value로 파라미터 체크시 제거)
@@ -90,4 +110,22 @@ public class MemberController {
 
         return new ResultDTO();
     }
+
+    /**
+     * 회원탛퇴
+     * @param memId
+     * @return
+     */
+    @RequestMapping(value = "/remove/{memId}", method = RequestMethod.DELETE)
+    public ResultDTO memberRemove(@PathVariable String memId) {
+
+        int cnt = memberService.removeMember(memId);
+        if (cnt == 0) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
+
+        return new ResultDTO();
+    }
+
+
 }

@@ -23,4 +23,15 @@ public class MemberService implements IMemberService {
         // TODO : 암호화 검사
         return memberMapper.insertMember(memberDTO);
     }
+
+
+    @Override
+    public String searchMemIdNonDuplYn(String memId) {
+        return memberMapper.selectMemIdNonDuplYn(memId);
+    }
+
+    @Override
+    public int removeMember(String memId) {
+        return memberMapper.deleteMember(memId);
+    }
 }

@@ -17,4 +17,18 @@
                 )
     </insert>
 
+    <select id="selectMemIdNonDuplYn" parameterType="String" resultType="String">
+        SELECT
+               IF(COUNT(DISTINCT MEM_ID) = 0 , 'Y' , 'N')  AS NON_DUPLICATE_YN
+        FROM   OSH.MEMBER
+        WHERE  MEM_ID = #{memId}
+    </select>
+
+    <update id="deleteMember" parameterType="String" >
+        UPDATE OSH.MEMBER
+        SET    DEL_YN = 'Y'
+             , DEL_DATE = NOW()
+        WHERE  MEM_ID = #{memId}
+    </update>
+
 </mapper>
