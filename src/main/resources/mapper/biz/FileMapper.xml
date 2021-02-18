@@ -28,10 +28,18 @@
     </insert>
 
     <update id="updateFile" parameterType="com.example.bootsample.biz.file.model.FileDTO">
-        UPDATE  FILE
-        SET     ORIGIN_NAME = #{ORIGIN_NAME}
+        UPDATE  OSH.FILE
+        SET     ORIGIN_NAME = #{originName}
                ,UPDATE_DATE = NOW()
-        WHERE   FILE_NO = #{FILE_NO}
+        WHERE   FILE_NO = #{fileNo}
     </update>
+
+    <select id="selectFile" parameterType="int" resultType="com.example.bootsample.biz.file.model.FileDTO">
+        SELECT  STORED_NAME
+               ,FILE_PATH
+               ,FILE_TYPE
+        FROM    OSH.FILE
+        WHERE   FILE_NO = #{fileNo}
+    </select>
 
 </mapper>

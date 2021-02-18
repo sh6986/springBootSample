@@ -17,4 +17,12 @@ public interface IFileMapper {
      * @return
      */
     int updateFile(FileDTO fileDTO);
+
+    /**
+     * 파일 조회
+     * @param fileNo
+     * @return fileDTO
+     */
+    FileDTO selectFile(int fileNo);
+
 }

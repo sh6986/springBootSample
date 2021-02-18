@@ -20,4 +20,11 @@ public interface IFileService {
      * @return
      */
     int modifyFile(FileDTO fileDTO);
+
+    /**
+     * 파일 조회
+     * @param fileNo
+     * @return fileDTO
+     */
+    FileDTO getFile(int fileNo);
 }

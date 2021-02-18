@@ -36,7 +36,7 @@ public class FileService implements IFileService {
         // 성공시 파일 저장
         if (1 == result) {
 
-            File dest = new File(fileDTO.getFilePath() + fileDTO.getStoredName());
+            File dest = new File(fileDTO.getFilePath());
             inputFile.transferTo(dest);
 
             return result;
@@ -55,5 +55,15 @@ public class FileService implements IFileService {
     @Override
     public int modifyFile(FileDTO fileDTO) {
         return fileMapper.updateFile(fileDTO);
+    }
+
+    /**
+     * 파일 조회
+     * @param fileNo
+     * @return fileDTO
+     */
+    @Override
+    public FileDTO getFile(int fileNo) {
+        return fileMapper.selectFile(fileNo);
     }
 }

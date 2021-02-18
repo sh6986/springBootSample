@@ -4,14 +4,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
-import java.util.Properties;
 
 @Configuration
 @MapperScan(basePackages = "com.example.bootsample")
@@ -30,9 +27,6 @@ public class MyBatisConfiguration {
         // 패턴으로 표현되는 범위로부터 클래스들의 리소스 정보를 읽어들여서
         // sqlSessionFactoryBean 객체에 mapper 경로를 넣어준다.
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:mapper/**/*.xml"));
-
-        Properties mybatisProperties = new Properties();
-        mybatisProperties.setProperty("mapUnderscoreToCamelCase", "true"); // CamelCase 자동맵핑
 
         return sqlSessionFactoryBean.getObject();
     }
