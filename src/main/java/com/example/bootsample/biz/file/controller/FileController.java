@@ -17,12 +17,9 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.io.OutputStream;
 import java.util.Calendar;
-=======
 import java.util.*;
->>>>>>> b87b8e39f4d6845c11f69b5176d361531ae8cbce
 
 @RestController
 @RequestMapping(value = "/file")
