@@ -69,33 +69,6 @@ public class FileController {
 
         logger.info("========== FileController.downLoad Start ==========");
 
-        // 해당 파일 정보 가져오기
-        FileDTO fileDTO = fileService.getFile(fileNo);
-
-        File file = new File(fileDTO.getFilePath());
-
-        String fileName = fileDTO.getOriginName();
-        String fileType = fileDTO.getFileType();
-        long fileLength = file.length();
-
-        response.setHeader("Content-Disposition", "attachement; fileName=\"" + fileName + "\";");
-        response.setHeader("Content-Transfer-Encoding", "binary");
-        response.setHeader("Content-Type", fileType);
-        response.setHeader("Content-Length", "" + fileLength);
-        response.setHeader("Pragma", "no-cache;");
-        response.setHeader("Expires", "-1;");
-
-        try (FileInputStream fis = new FileInputStream(fileDTO.getFilePath()); OutputStream out = response.getOutputStream();) {
-            int readCount = 0;
-            byte[] buffer = new byte[1024];
-
-            while ((readCount = fis.read(buffer)) != -1) {
-                out.write(buffer, 0, readCount);
-            }
-        } catch (Exception ex) {
-            throw new RuntimeException("file Load Error");
-        }
-
         logger.info("========== FileController.downLoad Start ==========");
 
         return new ResultDTO();
@@ -103,7 +76,6 @@ public class FileController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResultDTO searchFileList(FileDTO fileDTO) throws Exception{
-
 
         ResultDTO res = new ResultDTO();
         BootSampleUtills.pageInit(fileDTO);
@@ -114,7 +86,6 @@ public class FileController {
         data.put("cnt",cnt);
         data.put("list",cnt == 0 ? new ArrayList<>() : fileService.searchFileList(fileDTO) );
         res.setData(data);
-
 
         return res;
     }

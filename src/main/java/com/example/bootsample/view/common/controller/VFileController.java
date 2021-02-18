@@ -52,44 +52,21 @@ public class VFileController {
         response.setHeader("Pragma", "no-cache;");
         response.setHeader("Expires", "-1;");
 
-//        try (FileInputStream fis = new FileInputStream(fileDTO.getFilePath()); OutputStream out = response.getOutputStream();) {
-//            int readCount = 0;
-//            byte[] buffer = new byte[1024];
-//
-//            while ((readCount = fis.read(buffer)) != -1) {
-//                out.write(buffer, 0, readCount);
-//            }
-//        } catch (Exception ex) {
-//            throw new RuntimeException("file Load Error");
-//        }
+        try (FileInputStream fis = new FileInputStream(fileDTO.getFilePath()); OutputStream out = response.getOutputStream();) {
 
-
-        FileInputStream fis = new FileInputStream(fileDTO.getFilePath());
-        ServletOutputStream out = response.getOutputStream();
-
-        int readCount = 0;
-        byte[] buffer = new byte[1024];
-
-
-
-
-        logger.info("========== FileController.downLoad Start ==========");
-
-    }
-
-    public static void main(String[] args) throws IOException {
-        File file = new File("C:\\file\\2021118112648595.txt");
-
-        FileInputStream fis = new FileInputStream(file.getPath());
-
-        FileOutputStream output = new FileOutputStream("C:\\file\\out.txt");
-
-        int readCount = 0;
+            int readCount = 0;
             byte[] buffer = new byte[1024];
 
             while ((readCount = fis.read(buffer)) != -1) {
-                output.write(buffer, 0, readCount);
+                out.write(buffer, 0, readCount);
             }
+
+        } catch (Exception ex) {
+            throw new RuntimeException("file Load Error");
+        }
+
+        logger.info("========== FileController.downLoad Start ==========");
+
     }
 
 }

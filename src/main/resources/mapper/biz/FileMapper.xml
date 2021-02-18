@@ -35,7 +35,8 @@
     </update>
 
     <select id="selectFile" parameterType="int" resultType="com.example.bootsample.biz.file.model.FileDTO">
-        SELECT  STORED_NAME
+        SELECT  ORIGIN_NAME
+               ,STORED_NAME
                ,FILE_PATH
                ,FILE_TYPE
         FROM    OSH.FILE
