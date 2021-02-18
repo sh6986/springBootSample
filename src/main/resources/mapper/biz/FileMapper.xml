@@ -17,13 +17,13 @@
                 )
         VALUES
                (
-                 #{ORIGIN_NAME}
-                ,#{STORED_NAME}
-                ,#{FILE_SIZE}
-                ,#{FILE_PATH}
-                ,#{MEM_ID}
-                ,#{FILE_TYPE}
-                ,#{FILE_DESC}
+                 #{originName}
+                ,#{storedName}
+                ,#{fileSize}
+                ,#{filePath}
+                ,#{memId}
+                ,#{fileType}
+                ,#{fileDesc}
                )
     </insert>
 

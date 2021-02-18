@@ -31,6 +31,9 @@ public class MyBatisConfiguration {
         // sqlSessionFactoryBean 객체에 mapper 경로를 넣어준다.
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:mapper/**/*.xml"));
 
+        Properties mybatisProperties = new Properties();
+        mybatisProperties.setProperty("mapUnderscoreToCamelCase", "true"); // CamelCase 자동맵핑
+
         return sqlSessionFactoryBean.getObject();
     }
 

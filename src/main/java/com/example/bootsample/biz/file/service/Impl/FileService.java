@@ -36,7 +36,7 @@ public class FileService implements IFileService {
         // 성공시 파일 저장
         if (1 == result) {
 
-            File dest = new File(fileDTO.getFilePath() + fileDTO.getOriginName());
+            File dest = new File(fileDTO.getFilePath() + fileDTO.getStoredName());
             inputFile.transferTo(dest);
 
             return result;
