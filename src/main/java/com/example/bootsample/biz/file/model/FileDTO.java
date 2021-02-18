@@ -1,10 +1,11 @@
 package com.example.bootsample.biz.file.model;
 
+import com.example.bootsample.common.model.PageVO;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class FileDTO {
+public class FileDTO extends PageVO {
     private int fileNo;
     private String originName;
     private String storedName;

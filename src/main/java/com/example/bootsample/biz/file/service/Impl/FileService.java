@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class FileService implements IFileService {
@@ -65,5 +66,15 @@ public class FileService implements IFileService {
     @Override
     public FileDTO getFile(int fileNo) {
         return fileMapper.selectFile(fileNo);
+    }
+
+    @Override
+    public List<FileDTO> searchFileList(FileDTO fileDTO) {
+        return fileMapper.selectFileList(fileDTO);
+    }
+
+    @Override
+    public int searchFileListCnt(FileDTO fileDTO) {
+        return fileMapper.selectFileListCnt(fileDTO);
     }
 }

@@ -11,5 +11,17 @@ public interface IMemberService {
      */
     int registerMember(MemberDTO memberDTO);
 
+    /**
+     * 회뤈아이디 체크
+     * @param memId
+     * @return
+     */
+    String searchMemIdNonDuplYn(String memId);
 
+    /**
+     * 회뤈탈퇴
+     * @param memId
+     * @return
+     */
+    int removeMember(String memId);
 }

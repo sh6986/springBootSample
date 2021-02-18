@@ -4,6 +4,7 @@ import com.example.bootsample.biz.file.model.FileDTO;
 import com.example.bootsample.biz.file.service.IFileService;
 import com.example.bootsample.biz.member.model.MemberDTO;
 import com.example.bootsample.common.model.ResultDTO;
+import com.example.bootsample.common.util.BootSampleUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,12 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.io.OutputStream;
 import java.util.Calendar;
+=======
+import java.util.*;
+>>>>>>> b87b8e39f4d6845c11f69b5176d361531ae8cbce
 
 @RestController
 @RequestMapping(value = "/file")
@@ -117,6 +122,24 @@ public class FileController {
         logger.info("========== FileController.downLoad Start ==========");
 
         return new ResultDTO();
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public ResultDTO searchFileList(FileDTO fileDTO) throws Exception{
+
+
+        ResultDTO res = new ResultDTO();
+        BootSampleUtills.pageInit(fileDTO);
+
+        Map<String,Object> data = new HashMap<>();
+        int cnt = fileService.searchFileListCnt(fileDTO);
+
+        data.put("cnt",cnt);
+        data.put("list",cnt == 0 ? new ArrayList<>() : fileService.searchFileList(fileDTO) );
+        res.setData(data);
+
+
+        return res;
     }
 
 }

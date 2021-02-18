@@ -2,6 +2,8 @@ package com.example.bootsample.biz.file.mapper;
 
 import com.example.bootsample.biz.file.model.FileDTO;
 
+import java.util.List;
+
 public interface IFileMapper {
 
     /**
@@ -24,5 +26,19 @@ public interface IFileMapper {
      * @return fileDTO
      */
     FileDTO selectFile(int fileNo);
+
+    /**
+     * 파일 리스트
+     * @param fileDTO
+     * @return
+     */
+    List<FileDTO> selectFileList(FileDTO fileDTO);
+
+    /**
+     * 파일 리스트 갯수
+     * @param fileDTO
+     * @return
+     */
+    int selectFileListCnt(FileDTO fileDTO);
 
 }
