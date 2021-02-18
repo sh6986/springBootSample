@@ -4,6 +4,7 @@ import com.example.bootsample.biz.file.model.FileDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IFileService {
 
@@ -20,4 +21,20 @@ public interface IFileService {
      * @return
      */
     int modifyFile(FileDTO fileDTO);
+
+
+    /**
+     * 파일 리스트
+     * @param fileDTO
+     * @return
+     */
+    List<FileDTO> searchFileList(FileDTO fileDTO);
+
+    /**
+     * 파일 리스트 갯수
+     * @param fileDTO
+     * @return
+     */
+    int searchFileListCnt(FileDTO fileDTO);
+
 }

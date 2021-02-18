@@ -34,4 +34,43 @@
         WHERE   FILE_NO = #{FILE_NO}
     </update>
 
+
+    <select id="selectFileList" parameterType="com.example.bootsample.biz.file.model.FileDTO" resultType="com.example.bootsample.biz.file.model.FileDTO">
+        SELECT  FILE_NO
+             ,  ORIGIN_NAME
+             ,  STORED_NAME
+             ,  FILE_SIZE
+             ,  FILE_PATH
+             ,  MEM_ID
+             ,  FILE_TYPE
+             ,  REG_DATE
+             ,  DEL_YN
+             ,  UPDATE_DATE
+             ,  FILE_DESC
+        FROM    OSH.FILE
+        <where>
+           AND DEL_YN = 'N'
+           <if test="searchType != null and searchType != '' and searchWord != null and searchWord != ''">
+               AND ${searchType} = #{searchWord}
+           </if>
+        </where>
+        LIMIT #{startPage} , #{pageRange}
+    </select>
+    <select id="selectFileListCnt" parameterType="com.example.bootsample.biz.file.model.FileDTO" resultType="int">
+        SELECT  COUNT(1) AS ttl
+        FROM    OSH.FILE
+        <where>
+            AND DEL_YN = 'N'
+            <if test="searchType != null and searchType != '' and searchWord != null and searchWord != ''">
+                AND ${searchType} = #{searchWord}
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+
 </mapper>
