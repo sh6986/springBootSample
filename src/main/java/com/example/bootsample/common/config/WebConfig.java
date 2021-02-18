@@ -37,12 +37,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/asserts/**")
                 .excludePathPatterns("/view/member/login")
                 .excludePathPatterns("/view/member/join")
-                .excludePathPatterns("/view/**")
                 .excludePathPatterns("/member/login")
                 .excludePathPatterns("/member/reg")
                 .excludePathPatterns("/file/**")  //test
-                .excludePathPatterns("/member/**")
-                .excludePathPatterns("/file/**")
-                ;
+                .excludePathPatterns("/member/**");
     }
 }

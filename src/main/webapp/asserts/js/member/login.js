@@ -15,15 +15,24 @@ function setEventListener() {
 function login() {
 
     const id = $('#id').val();
-    const password = $('#password').val()
-    const url = '/login';
+    const password = $('#password').val();
+    const url = '/member/login';
 
     let data = {
-        id: id,
-        password: password
+        memId: id,
+        memPwd: password
     };
 
     data = JSON.stringify(data);
 
-    common.ajax(contextPath + url, data, 'POST', ()=>{console.log('success')}, ()=>{console.log('error')});
+    const option = {
+        'url': contextPath + '/member/login',
+        'method': 'POST',
+        'dataType': 'json',
+        'contentType': 'application/json',
+        'data': data,
+        'success': function() {console.log('success')}
+    }
+    common.sampleAjax(option, true);
+
 }

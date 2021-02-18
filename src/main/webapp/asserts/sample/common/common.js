@@ -49,10 +49,11 @@ const common = {
     ajaxHistory : [],
     URLS : {
         loginPageUrl : '/view/member/login',
-        loginProcessUrl : '/login',
-        logOutUrl : '/view/member/logout'
+        loginProcessUrl : '/member/login',
+        logOutUrl : '/member/logout'
 
     },
+    ajaxCount : 0,
     contextPath : '/',
     sampleAjax : function (options, showLoader) {
         if (!(common.SUCCESS_COMMON_CODE_LIST.indexOf(options.url) > -1) && common.contextPath != '/' ) {
@@ -76,7 +77,7 @@ const common = {
 
         $.extend(_options, {
             'beforeSend' : function(xhr, settings) {
-                if (showLoader && ajaxCount++ == 0) {
+                if (showLoader && common.ajaxCount++ == 0) {
                     //로딩바 시작
                     common.loadingstart();
                 }
@@ -132,7 +133,7 @@ const common = {
                 if(typeof options.complete == 'function') {
                     options.complete(xhr, status);
                 }
-                if(showLoader && --ajaxCount == 0) {
+                if(showLoader && --common.ajaxCount == 0) {
                     common.loadingEnd();
                 }
                 //common.removeItem(common.ajaxHistory,options.url);

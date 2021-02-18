@@ -3,19 +3,19 @@ package com.example.bootsample.view.common.controller;
 import com.example.bootsample.biz.file.controller.FileController;
 import com.example.bootsample.biz.file.model.FileDTO;
 import com.example.bootsample.biz.file.service.IFileService;
-import com.example.bootsample.common.model.ResultDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 @Controller
 @RequestMapping(value = "/view/file")

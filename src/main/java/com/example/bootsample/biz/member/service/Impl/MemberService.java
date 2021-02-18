@@ -4,10 +4,12 @@ import com.example.bootsample.biz.member.mapper.IMemberMapper;
 import com.example.bootsample.biz.member.model.MemberDTO;
 import com.example.bootsample.biz.member.service.IMemberService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
 @Service
+@Transactional
 public class MemberService implements IMemberService {
 
     @Resource

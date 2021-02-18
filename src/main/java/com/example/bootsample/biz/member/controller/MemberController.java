@@ -8,14 +8,13 @@ import com.example.bootsample.common.util.BootSampleUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/member")
@@ -29,7 +28,7 @@ public class MemberController {
     IMemberService memberService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultDTO login(@RequestBody MemberDTO memberDTO, HttpServletRequest request) {
+    public ResponseEntity<ResultDTO> login(@RequestBody MemberDTO memberDTO, HttpServletRequest request) {
 
         logger.info("========== MemberController.login Start ==========");
 
@@ -42,11 +41,11 @@ public class MemberController {
 
         logger.info("========== MemberController.login End ==========");
 
-        return resultObject;
+        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ResultDTO logout(HttpServletRequest request) {
+    public ResponseEntity<ResultDTO> logout(HttpServletRequest request) {
 
         logger.info("========== MemberController.logout Start ==========");
 
@@ -57,7 +56,7 @@ public class MemberController {
 
         logger.info("========== MemberController.logout End ==========");
 
-        return resultObject;
+        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
     }
 
     /**
@@ -66,14 +65,17 @@ public class MemberController {
      * @return
      */
     @RequestMapping(value = "/check/id/{memId}", method = RequestMethod.GET)
-    public ResultDTO memberReg(@PathVariable String memId) {
+    public ResponseEntity<ResultDTO> memberReg(@PathVariable String memId) {
+
+        ResultDTO resultDTO = new ResultDTO();
 
         String nonDuplYn = memberService.searchMemIdNonDuplYn(memId);
+
         if (nonDuplYn == "N" ) {
-            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
-        return new ResultDTO();
+        return new ResponseEntity<ResultDTO>(resultDTO, HttpStatus.OK);
     }
 
     /**
@@ -82,7 +84,9 @@ public class MemberController {
      * @return
      */
     @RequestMapping(value = "/reg", method = RequestMethod.POST)
-    public ResultDTO memberRegister(@RequestBody MemberDTO memberDTO) {
+    public ResponseEntity<ResultDTO> memberRegister(@RequestBody MemberDTO memberDTO) {
+
+        ResultDTO resultDTO = new ResultDTO();
 
         logger.info("========== MemberController.reg Start ==========");
         // TODO : 파라미터 체크 (@value로 파라미터 체크시 제거)
@@ -90,7 +94,7 @@ public class MemberController {
             || StringUtils.containsWhitespace(memberDTO.getMemId())
             || memberDTO.getMemId().length() > 32
             ) {
-            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
         if (  StringUtils.isEmpty(memberDTO.getMemId())
@@ -100,7 +104,7 @@ public class MemberController {
                 || !BootSampleUtills.pattertCheck("[a-z]{1,}",memberDTO.getMemPwd())
                 || !BootSampleUtills.pattertCheck("[0-9]{1,}",memberDTO.getMemPwd())
         ) {
-            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
 
@@ -108,7 +112,7 @@ public class MemberController {
 
         logger.info("========== MemberController.reg End ==========");
 
-        return new ResultDTO();
+        return new ResponseEntity<ResultDTO>(resultDTO, HttpStatus.OK);
     }
 
     /**
@@ -117,14 +121,16 @@ public class MemberController {
      * @return
      */
     @RequestMapping(value = "/remove/{memId}", method = RequestMethod.DELETE)
-    public ResultDTO memberRemove(@PathVariable String memId) {
+    public ResponseEntity<ResultDTO> memberRemove(@PathVariable String memId) {
+
+        ResultDTO resultDTO = new ResultDTO();
 
         int cnt = memberService.removeMember(memId);
         if (cnt == 0) {
-            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
-        return new ResultDTO();
+        return new ResponseEntity<ResultDTO>(resultDTO, HttpStatus.OK);
     }
 
 

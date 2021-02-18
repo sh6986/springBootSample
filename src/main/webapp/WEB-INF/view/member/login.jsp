@@ -9,8 +9,6 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/js/common/common.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/js/common/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/js/member/login.js"></script>
     <script type="text/javascript">
         // Context Path 경로 설정

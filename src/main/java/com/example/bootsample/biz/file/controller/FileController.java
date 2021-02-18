@@ -8,18 +8,18 @@ import com.example.bootsample.common.util.BootSampleUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Calendar;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/file")
@@ -31,7 +31,7 @@ public class FileController {
     IFileService fileService;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResultDTO upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("fileDesc") String fileDesc, HttpServletRequest request) throws IOException {
+    public ResponseEntity<ResultDTO> upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("fileDesc") String fileDesc, HttpServletRequest request) throws IOException {
 
         logger.info("========== FileController.upload Start ==========");
 
@@ -48,11 +48,11 @@ public class FileController {
 
         logger.info("========== FileController.upload End ==========");
 
-        return new ResultDTO();
+        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{fileNo}", method = RequestMethod.PUT)
-    public ResultDTO modify(@RequestBody FileDTO fileDTO, @PathVariable final int fileNo) throws Exception{
+    public ResponseEntity<ResultDTO> modify(@RequestBody FileDTO fileDTO, @PathVariable final int fileNo) throws Exception{
 
         logger.info("========== FileController.modify Start ==========");
 
@@ -61,21 +61,21 @@ public class FileController {
 
         logger.info("========== FileController.modify End ==========");
 
-        return new ResultDTO();
+        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{fileNo}", method = RequestMethod.GET)
-    public ResultDTO downLoad(@PathVariable final int fileNo, HttpServletResponse response) {
+    public ResponseEntity<ResultDTO> downLoad(@PathVariable final int fileNo, HttpServletResponse response) {
 
         logger.info("========== FileController.downLoad Start ==========");
 
         logger.info("========== FileController.downLoad Start ==========");
 
-        return new ResultDTO();
+        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResultDTO searchFileList(FileDTO fileDTO) throws Exception{
+    public ResponseEntity<ResultDTO> searchFileList(FileDTO fileDTO) throws Exception{
 
         ResultDTO res = new ResultDTO();
         BootSampleUtills.pageInit(fileDTO);
@@ -87,7 +87,7 @@ public class FileController {
         data.put("list",cnt == 0 ? new ArrayList<>() : fileService.searchFileList(fileDTO) );
         res.setData(data);
 
-        return res;
+        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
     }
 
 }
