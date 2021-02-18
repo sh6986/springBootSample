@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -28,9 +29,27 @@ public class FileService implements IFileService {
      * @return
      */
     @Override
-    public int uploadFile(MultipartFile inputFile, FileDTO fileDTO) throws IOException {
+    public int uploadFile(MultipartFile inputFile, FileDTO fileDTO, String fileDesc) throws IOException {
 
         logger.info("========== FileService.uploadFile Start ==========");
+
+        // 현재 시간을 기준으로 서버에 저장할 파일이름 생성
+        StringBuffer storedName = new StringBuffer();
+        Calendar cal = Calendar.getInstance();
+        storedName.append(cal.get(Calendar.YEAR))
+                .append(cal.get(Calendar.MONTH))
+                .append(cal.get(Calendar.DATE))
+                .append(cal.get(Calendar.HOUR))
+                .append(cal.get(Calendar.MINUTE))
+                .append(cal.get(Calendar.SECOND))
+                .append(cal.get(Calendar.MILLISECOND));
+
+        fileDTO.setOriginName(inputFile.getOriginalFilename());
+        fileDTO.setStoredName(storedName.toString());
+        fileDTO.setFileSize(inputFile.getSize());
+        fileDTO.setFilePath("C:\\file\\" + storedName.toString());
+        fileDTO.setFileType(inputFile.getContentType());
+        fileDTO.setFileDesc(fileDesc);
 
         int result = fileMapper.insertFile(fileDTO);
 

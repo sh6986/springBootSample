@@ -13,7 +13,7 @@ public interface IFileService {
      * @param inputFile, fileDTO
      * @return
      */
-    int uploadFile(MultipartFile inputFile, FileDTO fileDTO) throws IOException;
+    int uploadFile(MultipartFile inputFile, FileDTO fileDTO, String fileDesc) throws IOException;
 
     /**
      * 파일 수정

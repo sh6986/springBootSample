@@ -31,40 +31,20 @@ public class FileController {
     IFileService fileService;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResultDTO upload(@RequestParam("file") MultipartFile inputFile, HttpServletRequest request) throws IOException {
+    public ResultDTO upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("fileDesc") String fileDesc, HttpServletRequest request) throws IOException {
 
         logger.info("========== FileController.upload Start ==========");
 
         FileDTO fileDTO = new FileDTO();
-        String originName = inputFile.getOriginalFilename();
-        String extName = originName.substring(originName.lastIndexOf("."), originName.length());
-
-        // 현재 시간을 기준으로 서버에 저장할 파일이름 생성
-        StringBuffer storedName = new StringBuffer();
-        Calendar cal = Calendar.getInstance();
-        storedName.append(cal.get(Calendar.YEAR))
-                  .append(cal.get(Calendar.MONTH))
-                  .append(cal.get(Calendar.DATE))
-                  .append(cal.get(Calendar.HOUR))
-                  .append(cal.get(Calendar.MINUTE))
-                  .append(cal.get(Calendar.SECOND))
-                  .append(cal.get(Calendar.MILLISECOND))
-                  .append(extName);
 
         // 세션저장된 id 가져오기
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("memberInfo");
         String memId = memberDTO.getMemId();
 
-        fileDTO.setOriginName(inputFile.getOriginalFilename());
-        fileDTO.setStoredName(storedName.toString());
-        fileDTO.setFileSize(inputFile.getSize());
-        fileDTO.setFilePath("C:\\file\\" + storedName.toString());
         fileDTO.setMemId(memId);
-        fileDTO.setFileType(inputFile.getContentType());
-        fileDTO.setFileDesc("bb");
 
-        fileService.uploadFile(inputFile, fileDTO);
+        fileService.uploadFile(inputFile, fileDTO, fileDesc);
 
         logger.info("========== FileController.upload End ==========");
 
