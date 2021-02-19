@@ -30,7 +30,7 @@
 
     <%@ include file="/WEB-INF/decorater/include/header.jsp" %>
 
-    <div id="wrap" class="<sitemesh:write property='meta.bodyClass'/>"  style="min-height: 700px;" >
+    <div id="wrap" class=" col-md-12 <sitemesh:write property='meta.bodyClass'/>"  style="min-height: 700px;" >
         <!--Content-->
         <div id="container" class="container" style="min-height: 700px;">
             <sitemesh:write property='body'/>
