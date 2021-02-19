@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +27,11 @@ public class FileController {
     @Autowired
     IFileService fileService;
 
+    /**
+     * 파일 업로드
+     * @param inputFile, fileDesc
+     * @return
+     */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResultDTO upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("fileDesc") String fileDesc, HttpServletRequest request) throws IOException {
 
@@ -49,6 +53,11 @@ public class FileController {
         return new ResultDTO();
     }
 
+    /**
+     * 파일 수정
+     * @param fileDTO, fileNo
+     * @return
+     */
     @RequestMapping(value = "/{fileNo}", method = RequestMethod.PUT)
     public ResultDTO modify(@RequestBody FileDTO fileDTO, @PathVariable final int fileNo) throws Exception{
 
@@ -62,16 +71,11 @@ public class FileController {
         return new ResultDTO();
     }
 
-    @RequestMapping(value = "/{fileNo}", method = RequestMethod.GET)
-    public ResultDTO downLoad(@PathVariable final int fileNo, HttpServletResponse response) {
-
-        logger.info("========== FileController.downLoad Start ==========");
-
-        logger.info("========== FileController.downLoad Start ==========");
-
-        return new ResultDTO();
-    }
-
+    /**
+     * 파일 리스트
+     * @param fileDTO
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResultDTO searchFileList(FileDTO fileDTO) throws Exception{
 

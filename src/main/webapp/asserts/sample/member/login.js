@@ -31,8 +31,9 @@ function login() {
         'dataType': 'json',
         'contentType': 'application/json',
         'data': data,
-        'success': function() {console.log('success')}
-    }
+        'success': function() {location.href = "/main/main";}
+    };
+
     common.sampleAjax(option, true);
 
 }

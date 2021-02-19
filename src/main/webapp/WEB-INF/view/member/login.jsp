@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/js/member/login.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/sample/member/login.js"></script>
     <script type="text/javascript">
         // Context Path 경로 설정
         const contextPath = '${pageContext.request.contextPath}';

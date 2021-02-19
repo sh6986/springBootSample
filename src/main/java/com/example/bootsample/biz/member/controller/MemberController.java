@@ -8,8 +8,6 @@ import com.example.bootsample.common.util.BootSampleUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +25,11 @@ public class MemberController {
     @Autowired
     IMemberService memberService;
 
+    /**
+     * 회원 로그인
+     * @param memberDTO
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultDTO login(@RequestBody MemberDTO memberDTO, HttpServletRequest request) {
 
@@ -42,6 +45,11 @@ public class MemberController {
         return new ResultDTO();
     }
 
+    /**
+     * 회원 로그아웃
+     * @param memberDTO
+     * @return
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ResultDTO logout(HttpServletRequest request) {
 

@@ -64,6 +64,7 @@
         </where>
         LIMIT #{startPage} , #{pageRange}
     </select>
+
     <select id="selectFileListCnt" parameterType="com.example.bootsample.biz.file.model.FileDTO" resultType="int">
         SELECT  COUNT(1) AS ttl
         FROM    OPT.FILE
