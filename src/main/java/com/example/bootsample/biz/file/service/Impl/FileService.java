@@ -80,7 +80,7 @@ public class FileService implements IFileService {
     }
 
     /**
-     * 파일 조회
+     * 파일 단건 조회
      * @param fileNo
      * @return fileDTO
      */

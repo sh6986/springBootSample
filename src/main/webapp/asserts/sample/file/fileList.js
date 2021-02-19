@@ -2,8 +2,6 @@ $(document).ready(function() {
 
     initPage();
     setEventListener();
-
-    console.log($('.hi').text());
 });
 
 /**
@@ -21,22 +19,16 @@ function setEventListener() {
     /**
      * 파일명 클릭
      */
-    $('.fileName').on('click', function () {
-        console.log('aaa');
-
-    });
-
-    $(document).on('click', '')
-
-    console.log($('.hi').text());
-
-    $('.fileName').on('click', function () {
-        console.log('aaa');
-
+    $(document).on('click', 'td[class="fileName"]', function() {
+        const fileNo = $(this).closest('tr').attr('fileNo')
+        fileDetail(fileNo);
     });
 
 }
 
+/**
+ * 파일 리스트
+ */
 function getFileList() {
 
     const param = {
@@ -65,7 +57,7 @@ function addItem(fileList) {
     $.each(fileList, function (index, item) {
 
         const innerHTML =
-            `<tr class="table-light">
+            `<tr class="table-light" fileNo="${item.fileNo}">
                     <th scope="row">${item.fileNo}</th>
                     <td class="fileName">${item.originName}</td>
                     <td>${item.regDate}</td>
@@ -75,4 +67,28 @@ function addItem(fileList) {
         $('.fileList').append(innerHTML);
     });
 }
+
+/**
+ * 파일 상세
+ */
+function fileDetail(fileNo) {
+
+    // 파일 단건 조회
+    const option = {
+        'url': contextPath + '/file/' + fileNo,
+        'method': 'GET',
+        'dataType': 'json',
+        'contentType': 'application/json',
+        'data': null,
+        'success': (res) => {
+            $('.fileModal .originName').text(res.data.originName);
+            $('.fileModal .fileDesc').text(res.data.fileDesc);
+            $('.fileModal').modal();
+        }
+    };
+
+    common.sampleAjax(option, true);
+
+}
+
 

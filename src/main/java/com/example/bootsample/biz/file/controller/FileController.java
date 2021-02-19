@@ -92,4 +92,19 @@ public class FileController {
         return res;
     }
 
+    /**
+     * 파일 단건 조회
+     * @param fileNo
+     * @return
+     */
+    @RequestMapping(value = "/{fileNo}", method = RequestMethod.GET)
+    public ResultDTO searchFileList(@PathVariable final int fileNo) throws Exception{
+
+        ResultDTO res = new ResultDTO();
+        FileDTO fileDTO = fileService.getFile(fileNo);
+        res.setData(fileDTO);
+
+        return res;
+    }
+
 }

@@ -21,7 +21,7 @@ public interface IFileMapper {
     int updateFile(FileDTO fileDTO);
 
     /**
-     * 파일 조회
+     * 파일 단건 조회
      * @param fileNo
      * @return fileDTO
      */

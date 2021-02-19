@@ -39,6 +39,7 @@
                ,STORED_NAME
                ,FILE_PATH
                ,FILE_TYPE
+               ,FILE_DESC
         FROM    OPT.FILE
         WHERE   FILE_NO = #{fileNo}
     </select>
