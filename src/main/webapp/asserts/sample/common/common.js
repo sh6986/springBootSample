@@ -86,7 +86,7 @@ const common = {
                 }
             },
             'success' : function(result, status, xhr) {
-                if (xhr.status == 200 && this.SUCCESS_COMMON_CODE_LIST.indexOf(result.code) > -1) {
+                if (xhr.status == 200 && common.SUCCESS_COMMON_CODE_LIST.indexOf(result.code) > -1) {
                     if (typeof options.success == 'function') {
                         options.success(result, status, xhr);
                     }
