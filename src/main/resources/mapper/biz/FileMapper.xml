@@ -5,7 +5,7 @@
 
     <insert id="insertFile" parameterType="com.example.bootsample.biz.file.model.FileDTO">
         INSERT
-        INTO    OSH.FILE
+        INTO    OPT.FILE
                 (
                   ORIGIN_NAME
                  ,STORED_NAME
@@ -28,7 +28,7 @@
     </insert>
 
     <update id="updateFile" parameterType="com.example.bootsample.biz.file.model.FileDTO">
-        UPDATE  OSH.FILE
+        UPDATE  OPT.FILE
         SET     ORIGIN_NAME = #{originName}
                ,UPDATE_DATE = NOW()
         WHERE   FILE_NO = #{fileNo}
@@ -39,7 +39,7 @@
                ,STORED_NAME
                ,FILE_PATH
                ,FILE_TYPE
-        FROM    OSH.FILE
+        FROM    OPT.FILE
         WHERE   FILE_NO = #{fileNo}
     </select>
 
@@ -55,7 +55,7 @@
              ,  DEL_YN
              ,  UPDATE_DATE
              ,  FILE_DESC
-        FROM    OSH.FILE
+        FROM    OPT.FILE
         <where>
            AND DEL_YN = 'N'
            <if test="searchType != null and searchType != '' and searchWord != null and searchWord != ''">
@@ -66,7 +66,7 @@
     </select>
     <select id="selectFileListCnt" parameterType="com.example.bootsample.biz.file.model.FileDTO" resultType="int">
         SELECT  COUNT(1) AS ttl
-        FROM    OSH.FILE
+        FROM    OPT.FILE
         <where>
             AND DEL_YN = 'N'
             <if test="searchType != null and searchType != '' and searchWord != null and searchWord != ''">

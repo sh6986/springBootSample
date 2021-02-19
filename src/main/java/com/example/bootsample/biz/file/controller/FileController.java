@@ -8,8 +8,6 @@ import com.example.bootsample.common.util.BootSampleUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,7 +29,7 @@ public class FileController {
     IFileService fileService;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResponseEntity<ResultDTO> upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("fileDesc") String fileDesc, HttpServletRequest request) throws IOException {
+    public ResultDTO upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("fileDesc") String fileDesc, HttpServletRequest request) throws IOException {
 
         logger.info("========== FileController.upload Start ==========");
 
@@ -48,11 +46,11 @@ public class FileController {
 
         logger.info("========== FileController.upload End ==========");
 
-        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
+        return new ResultDTO();
     }
 
     @RequestMapping(value = "/{fileNo}", method = RequestMethod.PUT)
-    public ResponseEntity<ResultDTO> modify(@RequestBody FileDTO fileDTO, @PathVariable final int fileNo) throws Exception{
+    public ResultDTO modify(@RequestBody FileDTO fileDTO, @PathVariable final int fileNo) throws Exception{
 
         logger.info("========== FileController.modify Start ==========");
 
@@ -61,21 +59,21 @@ public class FileController {
 
         logger.info("========== FileController.modify End ==========");
 
-        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
+        return new ResultDTO();
     }
 
     @RequestMapping(value = "/{fileNo}", method = RequestMethod.GET)
-    public ResponseEntity<ResultDTO> downLoad(@PathVariable final int fileNo, HttpServletResponse response) {
+    public ResultDTO downLoad(@PathVariable final int fileNo, HttpServletResponse response) {
 
         logger.info("========== FileController.downLoad Start ==========");
 
         logger.info("========== FileController.downLoad Start ==========");
 
-        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
+        return new ResultDTO();
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseEntity<ResultDTO> searchFileList(FileDTO fileDTO) throws Exception{
+    public ResultDTO searchFileList(FileDTO fileDTO) throws Exception{
 
         ResultDTO res = new ResultDTO();
         BootSampleUtills.pageInit(fileDTO);
@@ -87,7 +85,7 @@ public class FileController {
         data.put("list",cnt == 0 ? new ArrayList<>() : fileService.searchFileList(fileDTO) );
         res.setData(data);
 
-        return new ResponseEntity<ResultDTO>(new ResultDTO(), HttpStatus.OK);
+        return res;
     }
 
 }
