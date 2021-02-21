@@ -9,9 +9,7 @@ $(document).ready(function() {
  */
 function initPage() {
 
-    // 파일 리스트
     getFileList();
-
 }
 
 /**
@@ -41,7 +39,8 @@ function setEventListener() {
      * 페이지 번호 클릭
      */
     $(document).on('click', 'a[class="page-link"]', function () {
-        const page = $(this).text();
+
+        const page = $(this).attr('pageNum');
         getFileList(page);
     });
 }
@@ -52,7 +51,8 @@ function setEventListener() {
 function getFileList(page) {
 
     const param = {
-        page: page
+        page: page,
+        pageRange: 5
     };
 
     const option = {
@@ -90,8 +90,6 @@ function addItem(res) {
         $('.fileList').append(innerHTML);
     });
 
-
-
 }
 
 /**
@@ -123,28 +121,38 @@ function fileDetail(fileNo) {
  */
 function paging(res) {
 
-    console.log(res);
-    const totalPage = res.data.cnt;
-    const pageRange = 10;
-    const pageNum = (totalPage / pageRange) + 1;
+    const totalPage = res.data.cnt; // 총 파일 개수
+    const pageRange = res.data.pageRange;  // 페이지당 출력할 파일 개수
+    const pageNum = Math.ceil(totalPage / pageRange);  // 페이지 개수
+    const currentPage = res.data.page;  // 현재 페이지 번호
+
+    let startPage = 1;
+    let endPage = startPage + 4;
+
+    if (5 < pageNum) {
+
+        startPage = (currentPage - 2) <= 0 ? 1 : currentPage - 2;
+        endPage = (startPage + 4) > pageNum ? pageNum : startPage + 4;
+
+        startPage = (startPage + 4) > pageNum ? startPage - ((startPage + 4) - pageNum) : startPage;
+    }
 
     let innerPageNum =
-        `<li class="page-item disabled">
-                <a class="page-link" href="#">«</a>
+        `<li class="page-item ${1 == startPage ? 'disabled' : ''}">
+                <a class="page-link" href="#" pageNum="1">«</a>
          </li>`;
 
-    for (let i = 1; i <= pageNum; i++) {
+    for (let i = startPage; i <= endPage; i++) {
 
         innerPageNum +=
-            `<li class="page-item ${i == res.data.page ? 'active' : ''}">
-                <a class="page-link" href="#">${i}</a>
+            `<li class="page-item ${i == currentPage ? 'active' : ''}">
+                <a class="page-link" href="#" pageNum="${i}">${i}</a>
              </li>`;
-
     }
 
     innerPageNum +=
-        `<li class="page-item disabled">
-                <a class="page-link" href="#">»</a>
+        `<li class="page-item ${pageNum == endPage ? 'disabled' : ''}">
+                <a class="page-link" href="#" pageNum="${pageNum}">»</a>
          </li>`;
 
     $('.filePaging').empty();

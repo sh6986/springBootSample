@@ -86,6 +86,7 @@ public class FileController {
         int cnt = fileService.searchFileListCnt(fileDTO);
 
         data.put("page", fileDTO.getPage());  // 현재 페이지
+        data.put("pageRange", fileDTO.getPageRange());  // 출력할 파일개수
         data.put("cnt",cnt);
         data.put("list",cnt == 0 ? new ArrayList<>() : fileService.searchFileList(fileDTO) );
         res.setData(data);
