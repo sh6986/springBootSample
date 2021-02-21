@@ -60,7 +60,7 @@
         <where>
            AND DEL_YN = 'N'
            <if test="searchType != null and searchType != '' and searchType != 'all' and searchWord != null and searchWord != ''">
-               AND ${searchType} = #{searchWord}
+               AND ${searchType} LIKE CONCAT('%', #{searchWord}, '%')
            </if>
         </where>
         ORDER BY REG_DATE DESC
@@ -73,7 +73,7 @@
         <where>
             AND DEL_YN = 'N'
             <if test="searchType != null and searchType != '' and searchType != 'all' and searchWord != null and searchWord != ''">
-                AND ${searchType} = #{searchWord}
+                AND ${searchType} LIKE CONCAT('%', #{searchWord}, '%')
             </if>
         </where>
     </select>

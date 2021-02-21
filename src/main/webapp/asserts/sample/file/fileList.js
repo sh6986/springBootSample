@@ -142,7 +142,7 @@ function paging(res) {
     const currentPage = res.data.page;  // 현재 페이지 번호
 
     let startPage = 1;
-    let endPage = startPage + 4;
+    let endPage = pageNum;
 
     if (5 < pageNum) {
 
