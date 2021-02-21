@@ -29,7 +29,7 @@ function setEventListener() {
     /**
      * 다운로드 버튼 클릭
      */
-    $('.fileModal').click(function () {
+    $('.fileModal .download').click(function () {
 
         const fileNo = $('.fileModal').attr('fileNo');
         location.href = '/view/file/' + fileNo;
