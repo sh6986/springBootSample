@@ -63,6 +63,7 @@
                AND ${searchType} = #{searchWord}
            </if>
         </where>
+        ORDER BY REG_DATE DESC
         LIMIT #{startPage} , #{pageRange}
     </select>
 

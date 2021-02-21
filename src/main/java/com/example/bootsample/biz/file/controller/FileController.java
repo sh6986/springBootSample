@@ -85,6 +85,7 @@ public class FileController {
         Map<String,Object> data = new HashMap<>();
         int cnt = fileService.searchFileListCnt(fileDTO);
 
+        data.put("page", fileDTO.getPage());  // 현재 페이지
         data.put("cnt",cnt);
         data.put("list",cnt == 0 ? new ArrayList<>() : fileService.searchFileList(fileDTO) );
         res.setData(data);
@@ -98,7 +99,7 @@ public class FileController {
      * @return
      */
     @RequestMapping(value = "/{fileNo}", method = RequestMethod.GET)
-    public ResultDTO searchFileList(@PathVariable final int fileNo) throws Exception{
+    public ResultDTO searchFile(@PathVariable final int fileNo) throws Exception{
 
         ResultDTO res = new ResultDTO();
         FileDTO fileDTO = fileService.getFile(fileNo);

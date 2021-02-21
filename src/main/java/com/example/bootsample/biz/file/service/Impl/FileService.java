@@ -94,6 +94,11 @@ public class FileService implements IFileService {
         return fileMapper.selectFileList(fileDTO);
     }
 
+    /**
+     * 파일 리스트 갯수
+     * @param fileDTO
+     * @return
+     */
     @Override
     public int searchFileListCnt(FileDTO fileDTO) {
         return fileMapper.selectFileListCnt(fileDTO);
