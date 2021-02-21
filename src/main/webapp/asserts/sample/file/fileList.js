@@ -27,7 +27,7 @@ function setEventListener() {
     });
 
     /**
-     * 다운로드 클릭
+     * 다운로드 버튼 클릭
      */
     $('.fileModal').click(function () {
 
@@ -40,19 +40,34 @@ function setEventListener() {
      */
     $(document).on('click', 'a[class="page-link"]', function () {
 
-        const page = $(this).attr('pageNum');
-        getFileList(page);
+        const pageNum = $(this).attr('pageNum');
+        $('.filePaging').attr('pageNum', pageNum);
+
+        getFileList();
+    });
+
+    /**
+     * 검색버튼 클릭
+     */
+    $('.searchBtn').click(function () {
+        getFileList();
     });
 }
 
 /**
  * 파일 리스트
  */
-function getFileList(page) {
+function getFileList() {
+
+    const page = $('.filePaging').attr('pageNum');
+    const searchType = $('#fileSearch option:selected').val();
+    const searchWord = $('.searchWord').val();
 
     const param = {
-        page: page,
-        pageRange: 5
+        page,
+        pageRange: 5,
+        searchType,
+        searchWord
     };
 
     const option = {

@@ -23,19 +23,18 @@
 
     <div class="row" style="padding-bottom: 10px; padding-top: 10px;" >
         <div class="col-lg-2">
-        <select class="custom-select">
-            <option selected="">Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="custom-select" id="fileSearch">
+            <option selected="" value="all">검색</option>
+            <option value="ORIGIN_NAME">파일이름</option>
+            <option value="FILE_DESC">내용</option>
         </select>
         </div>
         <div class="col-lg-4">
-         <input type="text" class="form-control" placeholder="검색어" id="inputDefault">
+         <input type="text" class="form-control searchWord" placeholder="검색어" id="inputDefault">
         </div>
 
         <div class="col-lg-1">
-            <button type="button" class="btn btn-primary">겅색</button>
+            <button type="button" class="btn btn-primary searchBtn">검색</button>
         </div>
     </div>
 
