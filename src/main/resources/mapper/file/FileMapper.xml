@@ -45,26 +45,31 @@
     </select>
 
     <select id="selectFileList" parameterType="com.example.bootsample.biz.file.model.FileDTO" resultType="com.example.bootsample.biz.file.model.FileDTO">
-        SELECT  FILE_NO
-             ,  ORIGIN_NAME
-             ,  STORED_NAME
-             ,  FILE_SIZE
-             ,  FILE_PATH
-             ,  MEM_ID
-             ,  FILE_TYPE
-             ,  REG_DATE
-             ,  DEL_YN
-             ,  UPDATE_DATE
-             ,  FILE_DESC
-        FROM    OPT.FILE
-        <where>
-           AND DEL_YN = 'N'
-           <if test="searchType != null and searchType != '' and searchType != 'all' and searchWord != null and searchWord != ''">
-               AND ${searchType} LIKE CONCAT('%', #{searchWord}, '%')
-           </if>
-        </where>
-        ORDER BY REG_DATE DESC
+        SELECT  @ROWNUM:=@ROWNUM+1 ROWNUM, B.*
+        FROM    (SELECT @ROWNUM:=0) A, (
+            SELECT  FILE_NO
+                 ,  ORIGIN_NAME
+                 ,  STORED_NAME
+                 ,  FILE_SIZE
+                 ,  FILE_PATH
+                 ,  MEM_ID
+                 ,  FILE_TYPE
+                 ,  REG_DATE
+                 ,  DEL_YN
+                 ,  UPDATE_DATE
+                 ,  FILE_DESC
+            FROM    OPT.FILE
+            <where>
+               AND DEL_YN = 'N'
+               <if test="searchType != null and searchType != '' and searchType != 'all' and searchWord != null and searchWord != ''">
+                   AND ${searchType} LIKE CONCAT('%', #{searchWord}, '%')
+               </if>
+            </where>
+            ORDER BY REG_DATE DESC
+        ) B
+        ORDER BY ROWNUM
         LIMIT #{startPage} , #{pageRange}
+
     </select>
 
     <select id="selectFileListCnt" parameterType="com.example.bootsample.biz.file.model.FileDTO" resultType="int">

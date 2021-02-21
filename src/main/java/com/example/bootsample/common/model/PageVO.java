@@ -10,6 +10,7 @@ public class PageVO {
     String searchWord;
     int page;
     int pageRange;
+    int rownum;
 
     public int getStartPage() {
         return (page-1) * pageRange;

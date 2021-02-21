@@ -50,6 +50,8 @@ function setEventListener() {
      * 검색버튼 클릭
      */
     $('.searchBtn').click(function () {
+
+        $('.filePaging').attr('pageNum', 1);
         getFileList();
     });
 }
@@ -96,7 +98,7 @@ function addItem(res) {
 
         const innerHTML =
             `<tr class="table-light" fileNo="${item.fileNo}">
-                    <th scope="row">${item.fileNo}</th>
+                    <th scope="row">${item.rownum}</th>
                     <td class="fileName">${item.originName}</td>
                     <td>${item.regDate}</td>
                     <td>${item.memId}</td>
