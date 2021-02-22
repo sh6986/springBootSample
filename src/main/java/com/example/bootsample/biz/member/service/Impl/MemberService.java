@@ -16,6 +16,16 @@ public class MemberService implements IMemberService {
     IMemberMapper memberMapper;
 
     /**
+     * 로그인
+     * @param memberDTO
+     * @return
+     */
+    @Override
+    public int getLogin(MemberDTO memberDTO) {
+        return memberMapper.selectLogin(memberDTO);
+    }
+
+    /**
      * 회원가입
      * @param memberDTO
      * @return
@@ -26,12 +36,21 @@ public class MemberService implements IMemberService {
         return memberMapper.insertMember(memberDTO);
     }
 
-
+    /**
+     * 회뤈아이디 체크
+     * @param memId
+     * @return
+     */
     @Override
     public String searchMemIdNonDuplYn(String memId) {
         return memberMapper.selectMemIdNonDuplYn(memId);
     }
 
+    /**
+     * 회뤈탈퇴
+     * @param memId
+     * @return
+     */
     @Override
     public int removeMember(String memId) {
         return memberMapper.deleteMember(memId);

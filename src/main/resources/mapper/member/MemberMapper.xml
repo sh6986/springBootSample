@@ -3,6 +3,13 @@
 
 <mapper namespace="com.example.bootsample.biz.member.mapper.IMemberMapper">
 
+    <select id="selectLogin" parameterType="com.example.bootsample.biz.member.model.MemberDTO" resultType="int">
+        SELECT COUNT(1)
+        FROM   OPT.MEMBER
+        WHERE  MEM_ID = #{memId}
+        AND    MEM_PWD = PASSWORD(#{memPwd})
+    </select>
+
     <insert id="insertMember" parameterType="com.example.bootsample.biz.member.model.MemberDTO">
         INSERT
         INTO 	OPT.MEMBER

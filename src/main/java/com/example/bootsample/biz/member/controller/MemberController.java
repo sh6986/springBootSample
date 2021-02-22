@@ -35,10 +35,13 @@ public class MemberController {
 
         logger.info("========== MemberController.login Start ==========");
 
-        HttpSession session = request.getSession();
-        session.setAttribute("memberInfo", memberDTO);
+        int result = memberService.getLogin(memberDTO);
 
-        logger.info("memberDTO : " + memberDTO);
+        if ( 1 == result) {
+
+            HttpSession session = request.getSession();
+            session.setAttribute("memberInfo", memberDTO);
+        }
 
         logger.info("========== MemberController.login End ==========");
 
