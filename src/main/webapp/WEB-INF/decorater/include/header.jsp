@@ -11,25 +11,36 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link loginBtn"  href="javascript:void(0)">Home
-                    <!-- todo 로그인 비로그인-->
-                    - 비로그인 , 로그인
-                    <span class="sr-only">(current)</span>
-                </a>
+                <c:if test="${empty memberInfo}">
+                    <a class="nav-link loginBtn"  href="javascript:location.href='/view/member/login';">
+                        <!-- todo 로그인 비로그인-->로그인
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </c:if>
+                <c:if test="${not empty memberInfo}">
+                    <a class="nav-link loginBtn"  href="javascript:logout();">
+                        <!-- todo 로그인 비로그인-->로그아웃
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </c:if>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="javascript:$('#signUp').modal()">회원가입</a>
+                <a class="nav-link" href="javascript:$('#signUp').modal();">회원가입</a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="#">메뉴바</a>
             </li>
 
-
+            <c:if test="${not empty memberInfo}">
+                <li class="nav-item">
+                    <a class="nav-link removeBtn" href="javascript:memberRemove('${memberInfo.memId}')">회원탈퇴</a>
+                </li>
+            </c:if>
         </ul>
     </div>
 </nav>
-
 
 
 

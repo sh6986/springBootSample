@@ -7,18 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/view/member")
 public class VMemberController {
 
-    @RequestMapping(value = "/join")
-    public String join() {
-        return "member/join";
-    }
-
     @RequestMapping(value = "/login")
     public String login() {
         return "member/login";
     }
 
-    @RequestMapping(value = "/logout")
-    public String logout() {
-        return "member/login";
-    }
 }

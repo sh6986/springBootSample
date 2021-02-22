@@ -42,6 +42,7 @@
                ,FILE_DESC
         FROM    OPT.FILE
         WHERE   FILE_NO = #{fileNo}
+        AND     DEL_YN = 'N'
     </select>
 
     <select id="selectFileList" parameterType="com.example.bootsample.biz.file.model.FileDTO" resultType="com.example.bootsample.biz.file.model.FileDTO">

@@ -10,10 +10,6 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/sample/member/login.js"></script>
-    <script type="text/javascript">
-        // Context Path 경로 설정
-        const contextPath = '${pageContext.request.contextPath}';
-    </script>
 </head>
 <body>
 <label>id</label><input type="text" id="id">

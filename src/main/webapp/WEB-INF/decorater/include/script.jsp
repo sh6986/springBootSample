@@ -5,3 +5,5 @@
 
 <!-- 공통 js -->
 <script type="text/javascript" charset="utf-8" src="<c:url value='/asserts/sample/common/common.js'/>"></script>
+<script type="text/javascript" charset="utf-8" src="<c:url value='/asserts/sample/common/header.js'/>"></script>
+<script type="text/javascript" charset="utf-8" src="<c:url value='/asserts/sample/member/signUp.js'/>"></script>

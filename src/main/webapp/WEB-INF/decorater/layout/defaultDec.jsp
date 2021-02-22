@@ -23,6 +23,10 @@
 
     <sitemesh:write property='head'/>
 
+    <script type="text/javascript">
+        // Context Path 경로 설정
+        const contextPath = '${pageContext.request.contextPath}';
+    </script>
 
 
 </head>
