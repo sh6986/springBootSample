@@ -35,6 +35,11 @@ public class VFileController {
         return "file/fileList";
     }
 
+    @RequestMapping(value = "/upload")
+    public String fileUpload() {
+        return "file/fileUpload";
+    }
+
     /**
      * 파일 다운로드
      * @param fileNo
