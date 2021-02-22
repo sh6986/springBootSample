@@ -34,7 +34,8 @@
                 <p class="fileDesc"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary download">download</button>
+                <button type="button" class="btn btn-primary modify">수정</button>
+                <button type="button" class="btn btn-primary download">다운로드</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

@@ -27,7 +27,7 @@ function setEventListener() {
     });
 
     /**
-     * 다운로드 버튼 클릭
+     * 모달 내 다운로드 버튼 클릭
      */
     $('.fileModal .download').click(function () {
 
@@ -54,6 +54,22 @@ function setEventListener() {
         $('.filePaging').attr('pageNum', 1);
         getFileList();
     });
+
+    /**
+     * 업로드 버튼 클릭
+     */
+    $('.uploadBtn').click(function () {
+        location.href = '/view/file/upload';
+    });
+
+    /**
+     * 모달 내 수정 버튼 클릭
+     */
+    $('.modify').click(function () {
+        const fileNo = $('.fileModal').attr('fileNo');
+        location.href = '/view/file/modify?fileNo=' + fileNo;
+    });
+
 }
 
 /**

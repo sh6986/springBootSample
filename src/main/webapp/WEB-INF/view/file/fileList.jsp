@@ -60,6 +60,10 @@
         <ul class="pagination pagination-sm filePaging">
         </ul>
     </div>
+
+    <div class="col-lg-1">
+        <button type="button" class="btn btn-primary uploadBtn">업로드</button>
+    </div>
 </div>
 </body>
 </html>
