@@ -27,7 +27,7 @@
         <small class="form-text emptyPwd" style="color: red; display: none">비밀번호를 다시 입력하세요.</small>
     </div>
     <small class="form-text notLogin" style="color: red; display: none">가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</small>
-    <input type="button" value="로그인" id="btnLogin">
+    <button type="button" id="btnLogin" class="btn btn-primary">로그인</button>
 </div>
 </body>
 

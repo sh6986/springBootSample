@@ -45,9 +45,6 @@ public class MemberController {
         if (  StringUtils.isEmpty(memberDTO.getMemPwd())
                 || StringUtils.containsWhitespace(memberDTO.getMemPwd())
                 || !BootSampleUtills.pattertCheck(PASSWORD_PATTERN,memberDTO.getMemPwd())
-//                || !BootSampleUtills.pattertCheck("[A-Z]{1,}",memberDTO.getMemPwd())
-//                || !BootSampleUtills.pattertCheck("[a-z]{1,}",memberDTO.getMemPwd())
-//                || !BootSampleUtills.pattertCheck("[0-9]{1,}",memberDTO.getMemPwd())
         ) {
             return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
@@ -65,7 +62,6 @@ public class MemberController {
         logger.info("========== MemberController.login End ==========");
 
         return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
-
     }
 
     /**
@@ -123,9 +119,6 @@ public class MemberController {
         if (  StringUtils.isEmpty(memberDTO.getMemPwd())
                 || StringUtils.containsWhitespace(memberDTO.getMemPwd())
                 || !BootSampleUtills.pattertCheck(PASSWORD_PATTERN,memberDTO.getMemPwd())
-//                || !BootSampleUtills.pattertCheck("[A-Z]{1,}",memberDTO.getMemPwd())
-//                || !BootSampleUtills.pattertCheck("[a-z]{1,}",memberDTO.getMemPwd())
-//                || !BootSampleUtills.pattertCheck("[0-9]{1,}",memberDTO.getMemPwd())
         ) {
             return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
         }

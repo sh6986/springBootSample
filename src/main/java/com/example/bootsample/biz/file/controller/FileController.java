@@ -39,23 +39,16 @@ public class FileController {
 
         logger.info("========== FileController.upload Start ==========");
 
-        ResultDTO resultDTO = new ResultDTO();
-
         FileDTO fileDTO = new FileDTO();
 
         String[] originalFilename = inputFile.getOriginalFilename().split("\\.");
 
-//        if (StringUtils.isEmpty(fileDesc)) {
-//
-//            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
-//        }
-
-//        if (StringUtils.isEmpty(inputFile)
-//                || StringUtils.isEmpty(fileDesc)
-//                || StringUtils.containsWhitespace(fileDesc)
-//                || 20 < originalFilename[0].length()) {
-//            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
-//        }
+        if (StringUtils.isEmpty(inputFile)
+                || StringUtils.isEmpty(originalFilename[0])
+                || StringUtils.isEmpty(fileDesc)
+                || 20 < originalFilename[0].length()) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
 
         // 세션저장된 id 가져오기
         HttpSession session = request.getSession();
@@ -68,7 +61,7 @@ public class FileController {
 
         logger.info("========== FileController.upload End ==========");
 
-        return resultDTO;
+        return new ResultDTO();
     }
 
     /**
@@ -80,6 +73,13 @@ public class FileController {
     public ResultDTO modify(@RequestBody FileDTO fileDTO, @PathVariable final int fileNo) throws Exception{
 
         logger.info("========== FileController.modify Start ==========");
+
+        String[] originalFilename = fileDTO.getOriginName().split("\\.");
+
+        if (StringUtils.isEmpty(originalFilename[0])
+                || 20 < originalFilename[0].length()) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
 
         fileDTO.setFileNo(fileNo);
         fileService.modifyFile(fileDTO);

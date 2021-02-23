@@ -10,7 +10,7 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <c:if test="${empty memberInfo}">
                     <a class="nav-link loginBtn"  href="/view/member/login">
                         로그인

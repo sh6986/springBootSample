@@ -3,11 +3,13 @@
 <configuration>
     <!-- 콘솔에 로그를 남긴다. -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="com.example.bootsample.common.filter.LogbackFilter"/>
         <encoder>
             <!-- %d:로그기록시간, %thread:현재 Thread 이름, %-3level:로그레벨 -3은 출력의 고정폭(3글자)
                  %logger{5}:축약된 logger name 5는 최대 자릿수, %msg:로그메시지, %n:줄바꿈 -->
             <pattern>%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-3level %logger{5} - %msg %n</pattern>
         </encoder>
+
     </appender>
 
     <!-- log4jdbc 옵션 설정 -->

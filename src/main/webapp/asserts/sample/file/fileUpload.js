@@ -20,6 +20,9 @@ function setEventListener() {
                 'data': new FormData($('#uploadForm')[0]),
                 'success': () => {
                     location.href = '/view/file/list';
+                },
+                'error': function () {
+                    console.log('aaa');
                 }
             };
 
@@ -38,10 +41,10 @@ function setEventListener() {
      * 파일선택 클릭
      */
     $('#file').click(function () {
+
         $('.empFile').hide();
+        $('.valFileName').hide();
     });
-
-
 }
 
 /**
@@ -52,20 +55,23 @@ function validation() {
     let result = true;
     const fileDesc = $('#fileDesc').val();
     const file = $('#file').val();
-
-    if (common.isEmpty(fileDesc)) {
-
-        $('.empFileDesc').show();
-        result = false;
-    }
-
-    if (20 < fileDesc.length) {
-
-    }
+    const filePath = $('#file').val();
+    const fileName = filePath.substring(filePath.lastIndexOf('\\') + 1, filePath.lastIndexOf('.'));
 
     if (common.isEmpty(file)) {
 
         $('.empFile').show();
+        result = false;
+
+    } else if (20 < fileName.length) {
+
+        $('.valFileName').show();
+        result = false;
+    }
+
+    if (common.isEmpty(fileDesc)) {
+
+        $('.empFileDesc').show();
         result = false;
     }
 

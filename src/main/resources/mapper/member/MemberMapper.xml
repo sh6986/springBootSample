@@ -12,6 +12,7 @@
     </select>
 
     <insert id="insertMember" parameterType="com.example.bootsample.biz.member.model.MemberDTO">
+        /*==IGNORE_LOG==*/
         INSERT
         INTO 	OPT.MEMBER
                 (

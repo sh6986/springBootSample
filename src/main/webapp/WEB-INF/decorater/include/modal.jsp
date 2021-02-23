@@ -56,8 +56,7 @@
                     <fieldset>
                         <div class="form-group">
                             <label for="IptMemId">ID</label>
-                            <input type="email" class="form-control" id="IptMemId" aria-describedby="emailHelp" placeholder="Enter Id">
-                            <small class="form-text text-muted">32자 이상의 아이디는 불가능 합니다.</small>
+                            <input type="email" class="form-control" id="IptMemId" aria-describedby="emailHelp" placeholder="Enter Id" maxlength="32">
                             <small class="form-text dupText" style="color: red; display: none">이미 존재하는 아이디 입니다.</small>
                             <small class="form-text notIdText" style="color: red; display: none">아이디를 다시 입력해 주세요.</small>
                         </div>

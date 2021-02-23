@@ -22,7 +22,8 @@
         <input type="hidden" value="${fileDTO.fileNo}" id="fileNo">
         <input type="hidden" value="${fileDTO.originName}" id="originName">
         <input type="hidden" value="" id="fileExt">
-        <input type="text" id="fileName" class="form-control" placeholder="">
+        <input type="text" id="fileName" class="form-control" placeholder="" maxlength="20">
+        <small class="form-text empFileName" style="color: red; display: none">파일명을 입력하세요</small>
     </div>
 
     <div class="col-lg-1">

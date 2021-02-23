@@ -18,7 +18,9 @@ public class MessageConstants {
 
         BAD_REQUEST("9000", "BAD_REQUEST"),             //BAD_REQUEST
         NOT_EXIST_RESPONSE("9001", "NOT_FOUNT"),        //NOT_FOUNT
-        SERVER_ERROR("9999", "SERVER_ERROR")            //SERVER_ERROR
+        SERVER_ERROR("9999", "SERVER_ERROR"),           //SERVER_ERROR
+
+        NOT_EXIST_MEMBER("9002", "NOT_EXIST_MEMBER"),   //NOT_EXIST_MEMBER
         ;
 
         private String code;

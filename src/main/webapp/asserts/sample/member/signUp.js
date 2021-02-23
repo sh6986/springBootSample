@@ -103,7 +103,7 @@ function validation(member) {
     let result = true;
     const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
 
-    if (common.isEmpty(member.memId) || 32 < member.memId.length) {
+    if (common.isEmpty(member.memId)) {
 
         $('.notIdText').show();
         result = false;
