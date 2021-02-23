@@ -45,7 +45,10 @@ public class VFileController {
     @RequestMapping(value = "/modify")
     public String fileModify(@RequestParam int fileNo, Model model) {
 
-        model.addAttribute("fileNo", fileNo);
+        FileDTO fileDTO = fileService.getFile(fileNo);
+        fileDTO.setFileNo(fileNo);
+        model.addAttribute("fileDTO",fileDTO);
+
         return "file/fileModify";
     }
 

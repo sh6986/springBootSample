@@ -11,29 +11,109 @@ function setEventListener() {
     $('.signUpBtn').click(function () {
         signUp();
     });
+
+    /**
+     * id focusout
+     */
+    $('#IptMemId').focusout(function () {
+        idDupCheck();
+    });
+
+    /**
+     * id keydown
+     */
+    $('#IptMemId').keydown(function () {
+        $('.dupText').hide();
+        $('.notIdText').hide();
+    });
+
+    /**
+     * pwd keydown
+     */
+    $('#IptMemPwd').keydown(function () {
+        $('.notPwdText').hide();
+    });
 }
 
+/**
+ * 아이디 중복 검사
+ */
+function idDupCheck() {
+
+    const memId = $('#IptMemId').val();
+
+    if (!common.isEmpty(memId)) {
+
+        const option = {
+            'url': contextPath + '/member/check/id/' + memId,
+            'method': 'GET',
+            'dataType': 'json',
+            'contentType': 'application/json',
+            'data': null,
+            'success': function () {
+                $('.dupText').hide();
+            },
+            'error': function () {
+                $('.dupText').show();
+            }
+        };
+
+        common.sampleAjax(option, true);
+    } else {
+
+    }
+}
+
+/**
+ * 회원 가입
+ */
 function signUp() {
 
     const memId = $('#IptMemId').val();
     const memPwd = $('#IptMemPwd').val();
-
     const member = {
         memId,
         memPwd
     };
 
-    const option = {
-        'url': contextPath + '/member/reg',
-        'method': 'POST',
-        'dataType': 'json',
-        'contentType': 'application/json',
-        'data': JSON.stringify(member),
-        'success': (res) => {
-            console.log(res);
-        }
-    };
+    if (validation(member)) {
 
-    common.sampleAjax(option, true);
+        const option = {
+            'url': contextPath + '/member/reg',
+            'method': 'POST',
+            'dataType': 'json',
+            'contentType': 'application/json',
+            'data': JSON.stringify(member),
+            'success': function () {
+                location.href = '/';
+            },
+            'error': function () {
+            }
+        };
 
+        common.sampleAjax(option, true);
+    }
+}
+
+/**
+ * 유효성 검사
+ */
+function validation(member) {
+
+    let result = true;
+    const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
+
+    if (common.isEmpty(member.memId) || 32 < member.memId.length) {
+
+        $('.notIdText').show();
+        result = false;
+    }
+
+    if (common.isEmpty(member.memPwd) || !regExp.test(member.memPwd)) {
+
+        $('.notPwdText').show();
+        result = false;
+    }
+
+    return result;
 }

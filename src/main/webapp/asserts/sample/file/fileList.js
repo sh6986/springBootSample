@@ -20,7 +20,7 @@ function setEventListener() {
     /**
      * 파일명 클릭
      */
-    $(document).on('click', 'td[class="fileName"]', function() {
+    $(document).on('click', 'td.fileName', function() {
 
         const fileNo = $(this).closest('tr').attr('fileNo');
         fileDetail(fileNo);
@@ -38,7 +38,7 @@ function setEventListener() {
     /**
      * 페이지 번호 클릭
      */
-    $(document).on('click', 'a[class="page-link"]', function () {
+    $(document).on('click', 'a.page-link', function () {
 
         const pageNum = $(this).attr('pageNum');
         $('.filePaging').attr('pageNum', pageNum);

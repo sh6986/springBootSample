@@ -9,7 +9,7 @@ function logout() {
         'dataType': 'json',
         'contentType': 'application/json',
         'data': null,
-        'success': function() {location.href = "/main/main";}
+        'success': function() {location.href = "/";}
     };
 
     common.sampleAjax(option, true);
@@ -27,7 +27,7 @@ function memberRemove(memId) {
         'dataType': 'json',
         'contentType': 'application/json',
         'data': null,
-        'success': function() {location.href = "/main/main";}
+        'success': function() {location.href = "/";}
     };
 
     common.sampleAjax(option, true);

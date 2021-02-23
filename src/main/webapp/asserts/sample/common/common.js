@@ -144,5 +144,19 @@ const common = {
         });
 
         $.ajax(_options);
+    },
+
+    /**
+     * 빈칸체크
+     * @param value
+     * @returns {boolean}
+     */
+    isEmpty: function (value) {
+
+        if (null === value || undefined === value || 'undefined' === value || '' === value) {
+            return true;
+        }
+        
+        return false;
     }
 }

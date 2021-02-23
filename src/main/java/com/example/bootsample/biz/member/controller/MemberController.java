@@ -20,7 +20,7 @@ public class MemberController {
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-    public static final String PASSWORD_PATTERN =  "^[A-Za-z0-9]{3,}$"; // 영문, 숫자
+    public static final String PASSWORD_PATTERN =  "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}"; // 영문, 숫자
 
     @Autowired
     IMemberService memberService;
@@ -35,17 +35,37 @@ public class MemberController {
 
         logger.info("========== MemberController.login Start ==========");
 
+        // 유효성 검사
+        if ( StringUtils.isEmpty(memberDTO.getMemId())
+                || StringUtils.containsWhitespace(memberDTO.getMemId())
+        ) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
+
+        if (  StringUtils.isEmpty(memberDTO.getMemPwd())
+                || StringUtils.containsWhitespace(memberDTO.getMemPwd())
+                || !BootSampleUtills.pattertCheck(PASSWORD_PATTERN,memberDTO.getMemPwd())
+//                || !BootSampleUtills.pattertCheck("[A-Z]{1,}",memberDTO.getMemPwd())
+//                || !BootSampleUtills.pattertCheck("[a-z]{1,}",memberDTO.getMemPwd())
+//                || !BootSampleUtills.pattertCheck("[0-9]{1,}",memberDTO.getMemPwd())
+        ) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
+
         int result = memberService.getLogin(memberDTO);
 
-        if ( 1 == result) {
+        if (1 == result) {
 
             HttpSession session = request.getSession();
             session.setAttribute("memberInfo", memberDTO);
+
+            return new ResultDTO();
         }
 
         logger.info("========== MemberController.login End ==========");
 
-        return new ResultDTO();
+        return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+
     }
 
     /**
@@ -74,12 +94,10 @@ public class MemberController {
     @RequestMapping(value = "/check/id/{memId}", method = RequestMethod.GET)
     public ResultDTO memberReg(@PathVariable String memId) {
 
-        ResultDTO resultDTO = new ResultDTO();
-
         String nonDuplYn = memberService.searchMemIdNonDuplYn(memId);
 
-        if (nonDuplYn == "N" ) {
-            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
+        if ("N".equals(nonDuplYn)) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
         return new ResultDTO();
@@ -93,27 +111,31 @@ public class MemberController {
     @RequestMapping(value = "/reg", method = RequestMethod.POST)
     public ResultDTO memberRegister(@RequestBody MemberDTO memberDTO) {
 
-        ResultDTO resultDTO = new ResultDTO();
-
         logger.info("========== MemberController.reg Start ==========");
         // TODO : 파라미터 체크 (@value로 파라미터 체크시 제거)
         if ( StringUtils.isEmpty(memberDTO.getMemId())
             || StringUtils.containsWhitespace(memberDTO.getMemId())
             || memberDTO.getMemId().length() > 32
             ) {
-            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
-        if (  StringUtils.isEmpty(memberDTO.getMemId())
+        if (  StringUtils.isEmpty(memberDTO.getMemPwd())
                 || StringUtils.containsWhitespace(memberDTO.getMemPwd())
                 || !BootSampleUtills.pattertCheck(PASSWORD_PATTERN,memberDTO.getMemPwd())
-                || !BootSampleUtills.pattertCheck("[A-Z]{1,}",memberDTO.getMemPwd())
-                || !BootSampleUtills.pattertCheck("[a-z]{1,}",memberDTO.getMemPwd())
-                || !BootSampleUtills.pattertCheck("[0-9]{1,}",memberDTO.getMemPwd())
+//                || !BootSampleUtills.pattertCheck("[A-Z]{1,}",memberDTO.getMemPwd())
+//                || !BootSampleUtills.pattertCheck("[a-z]{1,}",memberDTO.getMemPwd())
+//                || !BootSampleUtills.pattertCheck("[0-9]{1,}",memberDTO.getMemPwd())
         ) {
-            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
+        // 아이디 중복 검사
+        String nonDuplYn = memberService.searchMemIdNonDuplYn(memberDTO.getMemId());
+
+        if ("N".equals(nonDuplYn)) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
 
         memberService.registerMember(memberDTO);
 
@@ -130,11 +152,9 @@ public class MemberController {
     @RequestMapping(value = "/remove/{memId}", method = RequestMethod.DELETE)
     public ResultDTO memberRemove(@PathVariable String memId) {
 
-        ResultDTO resultDTO = new ResultDTO();
-
         int cnt = memberService.removeMember(memId);
         if (cnt == 0) {
-            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 
         return new ResultDTO();

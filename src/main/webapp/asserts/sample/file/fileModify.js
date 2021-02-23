@@ -4,26 +4,15 @@ $(document).ready(function () {
     setEventListener();
 });
 
+/**
+ * 화면 초기화
+ */
 function initPage() {
 
-    const fileNo = $('#fileNo').val();
+    const originName = $('#originName').val().split('.');
 
-    const option = {
-        'url': contextPath + '/file/' + fileNo,
-        'method': 'GET',
-        'dataType': 'json',
-        'contentType': 'application/json',
-        'data': null,
-        'success': (res) => {
-            const originName = res.data.originName.split('.');
-
-            $('#originName').val(originName[0]);
-            $('#fileExt').val(originName[1]);
-        }
-    };
-
-    common.sampleAjax(option, true);
-
+    $('#fileName').val(originName[0]);
+    $('#fileExt').val(originName[1]);
 }
 
 function setEventListener() {
@@ -34,7 +23,7 @@ function setEventListener() {
     $('.modifyBtn').click(function () {
 
         const fileNo = $('#fileNo').val();
-        const originName = $('#originName').val() + '.' + $('#fileExt').val();
+        const originName = $('#fileName').val() + '.' + $('#fileExt').val();
 
         const param = {
             originName

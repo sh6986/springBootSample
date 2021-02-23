@@ -10,10 +10,6 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/sample/file/fileUpload.js"></script>
-    <script type="text/javascript">
-        // Context Path 경로 설정
-        const contextPath = '${pageContext.request.contextPath}';
-    </script>
 </head>
 <body class="col-md-12">
 <form method="post" id="uploadForm" enctype="multipart/form-data" style="padding-top: 80px;">
@@ -21,13 +17,14 @@
         <legend>파일 업로드</legend>
         <div class="form-group">
             <label for="exampleTextarea">파일 설명</label>
-            <textarea name="fileDesc" class="form-control" id="exampleTextarea" rows="3" required></textarea>
+            <textarea name="fileDesc" id="fileDesc" class="form-control" id="exampleTextarea" rows="3" required></textarea>
+            <small class="form-text empFileDesc" style="color: red; display: none">파일 설명을 입력하세요</small>
         </div>
 
         <div class="form-group">
             <label for="exampleInputFile">파일 선택</label>
-            <input type="file" name="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" required>
-            <small id="fileHelp" class="form-text text-muted">10mb 이상의 파일은 선택 불가 입니다.</small>
+            <input type="file" name="file" id="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" required>
+            <small class="form-text empFile" style="color: red; display: none">파일을 선택하세요</small>
         </div>
 
         <input type="button" class="btn btn-primary uploadBtn" value="입력">

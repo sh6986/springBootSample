@@ -3,11 +3,13 @@ package com.example.bootsample.biz.file.controller;
 import com.example.bootsample.biz.file.model.FileDTO;
 import com.example.bootsample.biz.file.service.IFileService;
 import com.example.bootsample.biz.member.model.MemberDTO;
+import com.example.bootsample.common.constant.MessageConstants;
 import com.example.bootsample.common.model.ResultDTO;
 import com.example.bootsample.common.util.BootSampleUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,7 +39,23 @@ public class FileController {
 
         logger.info("========== FileController.upload Start ==========");
 
+        ResultDTO resultDTO = new ResultDTO();
+
         FileDTO fileDTO = new FileDTO();
+
+        String[] originalFilename = inputFile.getOriginalFilename().split("\\.");
+
+//        if (StringUtils.isEmpty(fileDesc)) {
+//
+//            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+//        }
+
+//        if (StringUtils.isEmpty(inputFile)
+//                || StringUtils.isEmpty(fileDesc)
+//                || StringUtils.containsWhitespace(fileDesc)
+//                || 20 < originalFilename[0].length()) {
+//            resultDTO.setData(MessageConstants.ResponseEnum.BAD_REQUEST);
+//        }
 
         // 세션저장된 id 가져오기
         HttpSession session = request.getSession();
@@ -50,7 +68,7 @@ public class FileController {
 
         logger.info("========== FileController.upload End ==========");
 
-        return new ResultDTO();
+        return resultDTO;
     }
 
     /**

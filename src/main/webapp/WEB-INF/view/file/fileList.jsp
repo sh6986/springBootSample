@@ -10,10 +10,6 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/sample/file/fileList.js"></script>
-    <script type="text/javascript">
-        // Context Path 경로 설정
-        const contextPath = '${pageContext.request.contextPath}';
-    </script>
 </head>
 <body class="col-md-12"><div class="fileWrap col-md-12" style="
     padding-top: 70px;

@@ -10,10 +10,6 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="${pageContext.request.contextPath}/asserts/sample/file/fileModify.js"></script>
-    <script type="text/javascript">
-        // Context Path 경로 설정
-        const contextPath = '${pageContext.request.contextPath}';
-    </script>
 </head>
 <body class="col-md-12"><div class="fileWrap col-md-12" style="
     padding-top: 70px;
@@ -23,9 +19,10 @@
     <label>파일제목 수정</label>
 
     <div class="row" style="padding-bottom: 10px; padding-top: 10px;" >
-        <input type="hidden" value="${fileNo}" id="fileNo">
+        <input type="hidden" value="${fileDTO.fileNo}" id="fileNo">
+        <input type="hidden" value="${fileDTO.originName}" id="originName">
         <input type="hidden" value="" id="fileExt">
-        <input type="text" id="originName" class="form-control" placeholder="">
+        <input type="text" id="fileName" class="form-control" placeholder="">
     </div>
 
     <div class="col-lg-1">
