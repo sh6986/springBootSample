@@ -20,7 +20,7 @@ public class MessageConstants {
         NOT_EXIST_RESPONSE("9001", "NOT_FOUNT"),        //NOT_FOUNT
         SERVER_ERROR("9999", "SERVER_ERROR"),           //SERVER_ERROR
 
-        NOT_EXIST_MEMBER("9002", "NOT_EXIST_MEMBER"),   //NOT_EXIST_MEMBER
+        EXCEEDS_FILE_SIZE("9002", "EXCEEDS_FILE_SIZE")  //EXCEEDS_FILE_SIZE
         ;
 
         private String code;

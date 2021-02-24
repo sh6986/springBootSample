@@ -13,6 +13,8 @@ function initPage() {
 
     $('#fileName').val(originName[0]);
     $('#fileExt').val(originName[1]);
+
+    $('#fileListLi').addClass('active');
 }
 
 function setEventListener() {

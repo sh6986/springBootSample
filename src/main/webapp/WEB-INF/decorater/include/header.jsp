@@ -12,7 +12,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <c:if test="${empty memberInfo}">
-                    <a class="nav-link loginBtn"  href="/view/member/login">
+                    <a class="nav-link loginBtn" id="loginLi" href="/view/member/login">
                         로그인
                         <span class="sr-only">(current)</span>
                     </a>
@@ -31,7 +31,7 @@
                 </li>
             </c:if>
 
-            <li class="nav-item">
+            <li class="nav-item" id="fileListLi">
                 <a class="nav-link" href="/view/file/list">파일리스트</a>
             </li>
 

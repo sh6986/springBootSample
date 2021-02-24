@@ -27,7 +27,10 @@ function memberRemove(memId) {
         'dataType': 'json',
         'contentType': 'application/json',
         'data': null,
-        'success': function() {location.href = "/";}
+        'success': function() {
+            alert('회원탈퇴가 완료되었습니다.');
+            location.href = "/";
+        }
     };
 
     common.sampleAjax(option, true);

@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
+    initPage();
     setEventListener();
-
 });
+
+function initPage() {
+    $('#loginLi').addClass('active');
+}
 
 function setEventListener() {
 

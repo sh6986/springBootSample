@@ -1,7 +1,12 @@
 $(document).ready(function () {
 
+    initPage();
     setEventListener();
 });
+
+function initPage() {
+    $('#fileListLi').addClass('active');
+}
 
 function setEventListener() {
 

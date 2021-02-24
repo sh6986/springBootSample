@@ -10,6 +10,8 @@ $(document).ready(function() {
 function initPage() {
 
     getFileList();
+
+    $('#fileListLi').addClass('active');
 }
 
 /**
