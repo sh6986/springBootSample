@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
     initPage();
-    setEventListener();
+    setEventListenerLogin();
 });
 
 function initPage() {
     $('#loginLi').addClass('active');
 }
 
-function setEventListener() {
+function setEventListenerLogin() {
 
     /**
      * 로그인 버튼 클릭
@@ -54,7 +54,7 @@ function login() {
         memPwd: password
     };
 
-    if (validation(member)) {
+    if (loginValidation(member)) {
 
         const option = {
             'url': contextPath + '/member/login',
@@ -70,14 +70,12 @@ function login() {
 
         common.sampleAjax(option, true);
     }
-
-
 }
 
 /**
  * 유효성 검사
  */
-function validation(member) {
+function loginValidation(member) {
 
     let result = true;
     const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;

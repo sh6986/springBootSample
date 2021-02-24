@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-    setEventListener();
+    setEventListenerSingUp();
 });
 
-function setEventListener() {
+function setEventListenerSingUp() {
 
     /**
      * sign up 버튼 클릭
@@ -18,10 +18,6 @@ function setEventListener() {
     $('#IptMemId').focusout(function () {
         idDupCheck();
     });
-
-    // $(document).on('focusout', '#IptMemId', function () {
-    //     idDupCheck();
-    // });
 
     /**
      * id keydown
@@ -80,7 +76,7 @@ function signUp() {
         memPwd
     };
 
-    if (validation(member)) {
+    if (signUpValidation(member)) {
 
         const option = {
             'url': contextPath + '/member/reg',
@@ -102,7 +98,7 @@ function signUp() {
 /**
  * 유효성 검사
  */
-function validation(member) {
+function signUpValidation(member) {
 
     let result = true;
     const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;

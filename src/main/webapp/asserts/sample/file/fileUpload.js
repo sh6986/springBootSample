@@ -27,7 +27,7 @@ function setEventListener() {
                     location.href = '/view/file/list';
                 },
                 'error': function () {
-                    console.log('aaa');
+
                 }
             };
 
@@ -49,6 +49,7 @@ function setEventListener() {
 
         $('.empFile').hide();
         $('.valFileName').hide();
+        $('.valFileSize').hide();
     });
 }
 
@@ -62,6 +63,7 @@ function validation() {
     const file = $('#file').val();
     const filePath = $('#file').val();
     const fileName = filePath.substring(filePath.lastIndexOf('\\') + 1, filePath.lastIndexOf('.'));
+    const size = $('#file')[0].files[0].size;
 
     if (common.isEmpty(file)) {
 
@@ -77,6 +79,12 @@ function validation() {
     if (common.isEmpty(fileDesc)) {
 
         $('.empFileDesc').show();
+        result = false;
+    }
+
+    if (100000000 < size) {  // 100MB
+
+        $('.valFileSize').show();
         result = false;
     }
 

@@ -120,7 +120,7 @@ const common = {
                     alert(errorMessage)
                 } else if ( statusCode == 204 ){  //데이터 없음.
                     //options.error(xhr, status, error);
-                } else {
+                } else if (typeof options.error == 'function'){
                     alert('일시적인 오류가 발생하였습니다. 잠시 후에 다시 이용해주시기 바랍니다.');
                 }
 
