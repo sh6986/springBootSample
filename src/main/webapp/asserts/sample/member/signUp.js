@@ -19,6 +19,10 @@ function setEventListener() {
         idDupCheck();
     });
 
+    // $(document).on('focusout', '#IptMemId', function () {
+    //     idDupCheck();
+    // });
+
     /**
      * id keydown
      */

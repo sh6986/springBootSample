@@ -26,6 +26,9 @@ public class FileController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
+    public static final String FILETYPE_PATTERN =  "^(image|video)";
+    public static final String FILETYPE_EXL_PATTERN =  "(.*?)\\.(xls|xlsx)$";
+
     @Autowired
     IFileService fileService;
 
@@ -47,6 +50,14 @@ public class FileController {
                 || StringUtils.isEmpty(originalFilename[0])
                 || StringUtils.isEmpty(fileDesc)
                 || 20 < originalFilename[0].length()) {
+            return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
+        }
+
+        logger.info(inputFile.getContentType()+":3##3");
+
+        if (!BootSampleUtills.pattertCheck(FILETYPE_PATTERN, inputFile.getContentType())
+            && !BootSampleUtills.pattertCheck(FILETYPE_EXL_PATTERN, inputFile.getOriginalFilename())
+        ) {
             return new ResultDTO(MessageConstants.ResponseEnum.BAD_REQUEST);
         }
 

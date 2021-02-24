@@ -20,7 +20,7 @@ public class MemberController {
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-    public static final String PASSWORD_PATTERN =  "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}"; // 영문, 숫자
+    public static final String PASSWORD_PATTERN =  "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}";
 
     @Autowired
     IMemberService memberService;

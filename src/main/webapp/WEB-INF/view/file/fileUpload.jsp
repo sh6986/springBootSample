@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <label for="exampleInputFile">파일 선택</label>
-            <input type="file" name="file" id="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" required>
+            <input type="file" name="file" id="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" accept="image/*, video/*, .xls, .xlsx" required>
             <small class="form-text empFile" style="color: red; display: none">파일을 선택하세요</small>
             <small class="form-text valFileName" style="color: red; display: none">20자 이하 파일명만 가능합니다.</small>
         </div>
