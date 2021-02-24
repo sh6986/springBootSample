@@ -28,6 +28,17 @@ function setEventListener() {
         $('.emptyPwd').hide();
         $('.notLogin').hide();
     });
+
+    /**
+     * 패스워드 keydown
+     */
+    $('#password').keydown(function (key) {
+
+        if (13 === key.keyCode) {
+            login();
+        }
+    });
+
 }
 
 function login() {
