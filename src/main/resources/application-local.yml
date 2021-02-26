@@ -3,7 +3,7 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:log4jdbc:mysql://13.124.208.33:3306/
+    url: jdbc:log4jdbc:mysql://ec2-13-124-193-66.ap-northeast-2.compute.amazonaws.com:3306/
     username: openit
     password: Opt@79787
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
