@@ -33,6 +33,16 @@ function setEventListenerSingUp() {
     $('#IptMemPwd').keydown(function () {
         $('.notPwdText').hide();
     });
+
+    /**
+     * 패스워드 keydown
+     */
+    $('#IptMemPwd').keydown(function (key) {
+
+        if (13 === key.keyCode) {
+            signUp();
+        }
+    });
 }
 
 /**

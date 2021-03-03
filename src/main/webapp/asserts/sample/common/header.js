@@ -29,9 +29,12 @@ function memberRemove(memId) {
         'data': null,
         'success': function() {
             alert('회원탈퇴가 완료되었습니다.');
+            logout();
             location.href = "/";
         }
     };
 
     common.sampleAjax(option, true);
+
+
 }
